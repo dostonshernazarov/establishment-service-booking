@@ -121,7 +121,7 @@ func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity
 		return nil, fmt.Errorf("failed to execute SQL query for creating restaurant: %v", err)
 	}
 
-	return nil, nil
+	return restaurant, nil
 }
 
 // get a restaurant
@@ -204,11 +204,8 @@ func (p restaurantRepo) GetRestaurant(ctx context.Context, restaurant_id string)
 }
 
 // get a list of restaurants
-func (p restaurantRepo) ListRestaurants(ctx context.Context, page, limit int64) ([]*entity.Restaurant, error) {
+func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, error) {
 	var restaurants []*entity.Restaurant
-
-	// calculate offset
-	offset := (page - 1) * limit
 
 	queryBuilder := p.RestaurantSelectQueryPrefix()
 

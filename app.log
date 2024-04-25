@@ -22,8 +22,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -45,8 +45,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -68,8 +68,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -91,8 +91,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -114,8 +114,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -137,8 +137,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -160,8 +160,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -185,8 +185,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -210,8 +210,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -238,8 +238,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -263,8 +263,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -289,8 +289,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -312,8 +312,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -335,8 +335,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -358,8 +358,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -381,8 +381,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -404,8 +404,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -427,8 +427,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -450,8 +450,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -473,8 +473,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -496,8 +496,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -519,8 +519,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -542,8 +542,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -565,8 +565,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -588,8 +588,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -612,8 +612,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2250
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2250
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -636,8 +636,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2232
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2232
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -664,8 +664,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2286
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2286
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -690,8 +690,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2207
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2207
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -716,8 +716,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -741,8 +741,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -764,8 +764,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -788,8 +788,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_DeleteAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2279
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_DeleteAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2279
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -814,8 +814,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_CreateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2207
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_CreateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2207
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -839,8 +839,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2315
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2315
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -862,8 +862,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2315
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2315
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -890,8 +890,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -913,8 +913,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -936,8 +936,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -959,8 +959,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -982,8 +982,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1005,8 +1005,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1028,8 +1028,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1051,8 +1051,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1077,8 +1077,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1102,8 +1102,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1125,8 +1125,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1148,8 +1148,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1171,8 +1171,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1194,8 +1194,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1217,8 +1217,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1240,8 +1240,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1263,8 +1263,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1286,8 +1286,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1309,8 +1309,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1332,8 +1332,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1355,8 +1355,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2225
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2225
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1384,8 +1384,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1409,8 +1409,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1434,8 +1434,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1457,8 +1457,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1480,8 +1480,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1503,8 +1503,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1526,8 +1526,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1549,8 +1549,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1572,8 +1572,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1595,8 +1595,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1618,8 +1618,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1642,8 +1642,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_GetRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2323
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2323
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1672,8 +1672,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateRestaurant_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2359
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateRestaurant_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2359
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1699,8 +1699,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1724,8 +1724,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1749,8 +1749,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1772,8 +1772,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1795,8 +1795,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1818,8 +1818,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1843,8 +1843,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1866,8 +1866,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateHotel_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2449
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateHotel_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2449
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1891,8 +1891,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1916,8 +1916,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1941,8 +1941,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1964,8 +1964,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -1989,8 +1989,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2014,8 +2014,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2039,8 +2039,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2064,8 +2064,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2089,8 +2089,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2114,8 +2114,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2139,8 +2139,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2164,8 +2164,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2189,8 +2189,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2214,8 +2214,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2239,8 +2239,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2262,8 +2262,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2287,8 +2287,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2312,8 +2312,8 @@ Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
 Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
 	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
-Booking/establishment-service-booking/genproto/establishment_service._EstablishmentService_UpdateAttraction_Handler
-	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment_service/establishment.pb.go:2269
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_UpdateAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2269
 google.golang.org/grpc.(*Server).processUnaryRPC
 	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
 google.golang.org/grpc.(*Server).handleStream
@@ -2324,3 +2324,71 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-04-24T19:29:35.059+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
 2024-04-24T19:29:41.408+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T19:29:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "UpdateAttraction", "peer.address": "127.0.0.1:34880", "grpc.code": "OK", "grpc.time_ms": 3.354}
 2024-04-24T19:51:10.362+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T16:09:51.695+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T16:11:29.339+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T16:11:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:36614", "grpc.code": "OK", "grpc.time_ms": 7.034}
+2024-04-25T16:11:39.114+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T17:47:40.317+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T17:48:27.952+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T17:48:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:55646", "grpc.code": "OK", "grpc.time_ms": 1.218}
+2024-04-25T17:51:15.014+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T17:57:27.088+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T17:57:53.671+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T17:57:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:51000", "grpc.code": "OK", "grpc.time_ms": 0.955}
+2024-04-25T17:58:25.844+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T17:58:26.897+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T17:58:29.788+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T17:58:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:50582", "grpc.code": "OK", "grpc.time_ms": 1.555}
+2024-04-25T17:59:49.208+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T17:59:50.881+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T17:59:53.484+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T17:59:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:37024", "grpc.code": "OK", "grpc.time_ms": 0.935}
+2024-04-25T18:00:49.708+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:01:04.726+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:01:07.235+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:01:07+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:58392", "grpc.code": "OK", "grpc.time_ms": 1.461}
+2024-04-25T18:05:17.857+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:05:19.905+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:05:35.993+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:05:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:33102", "grpc.code": "OK", "grpc.time_ms": 1.409}
+2024-04-25T18:05:39.431+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:05:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:33110", "grpc.code": "OK", "grpc.time_ms": 0.286}
+2024-04-25T18:05:40.092+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:05:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:33124", "grpc.code": "OK", "grpc.time_ms": 0.326}
+2024-04-25T18:05:41.176+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:05:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:33138", "grpc.code": "OK", "grpc.time_ms": 0.344}
+2024-04-25T18:09:21.878+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:09:34.888+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:09:40.437+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T18:09:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "GetAttraction", "peer.address": "127.0.0.1:46878", "error": "failed to get attraction: no rows in result set", "grpc.code": "Unknown", "grpc.time_ms": 1.144}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_GetAttraction_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:2233
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T18:10:18.644+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:10:18+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "GetAttraction", "peer.address": "127.0.0.1:45802", "grpc.code": "OK", "grpc.time_ms": 1.882}
+2024-04-25T18:11:49.570+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:11:56.069+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:12:01.231+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:12:01+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:59316", "grpc.code": "OK", "grpc.time_ms": 1.001}
+2024-04-25T18:12:50.643+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:12:51.545+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:12:54.135+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:12:54+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:35178", "grpc.code": "OK", "grpc.time_ms": 0.978}
+2024-04-25T18:13:24.216+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:13:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:37770", "grpc.code": "OK", "grpc.time_ms": 0.518}
+2024-04-25T18:13:25.952+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:13:25+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:37784", "grpc.code": "OK", "grpc.time_ms": 0.265}
+2024-04-25T18:13:26.529+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:13:26+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:37796", "grpc.code": "OK", "grpc.time_ms": 1.834}
+2024-04-25T18:18:28.697+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:18:30.516+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:18:32.169+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:18:32+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:57664", "grpc.code": "OK", "grpc.time_ms": 1.252}
+2024-04-25T18:18:41.819+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:18:45.588+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:18:51.000+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:18:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:39632", "grpc.code": "OK", "grpc.time_ms": 0.841}
+2024-04-25T18:19:33.448+0500	INFO	app/main.go:36	User service stops !
+2024-04-25T18:19:34.820+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:19:37.378+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T18:19:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:60572", "grpc.code": "OK", "grpc.time_ms": 0.891}
+2024-04-25T18:22:13.125+0500	INFO	app/main.go:36	User service stops !

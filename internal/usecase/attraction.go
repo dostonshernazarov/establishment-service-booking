@@ -49,11 +49,11 @@ func (a AttractionService) GetAttraction(ctx context.Context, attraction_id stri
 	return a.repo.GetAttraction(ctx, attraction_id)
 }
 
-func (a AttractionService) ListAttractions(ctx context.Context, page, limit int64) ([]*entity.Attraction, error) {
+func (a AttractionService) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, error) {
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
-	return a.repo.ListAttractions(ctx, page, limit)
+	return a.repo.ListAttractions(ctx, offset, limit)
 }
 
 func (a AttractionService) UpdateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error) {
