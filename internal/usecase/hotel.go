@@ -49,11 +49,11 @@ func (h HotelService) GetHotel(ctx context.Context, hotel_id string) (*entity.Ho
 	return h.repo.GetHotel(ctx, hotel_id)
 }
 
-func (h HotelService) ListHotels(ctx context.Context, page, limit int64) ([]*entity.Hotel, error) {
+func (h HotelService) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, error) {
 	ctx, cancel := context.WithTimeout(ctx, h.ctxTimeout)
 	defer cancel()
 
-	return h.repo.ListHotels(ctx, page, limit)
+	return h.repo.ListHotels(ctx, offset, limit)
 }
 
 func (h HotelService) UpdateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error) {

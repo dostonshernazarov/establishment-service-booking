@@ -201,11 +201,8 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 }
 
 // get a list of hotels
-func (p hotelRepo) ListHotels(ctx context.Context, page, limit int64) ([]*entity.Hotel, error) {
+func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, error) {
 	var hotels []*entity.Hotel
-
-	// calculate offset
-	offset := (page - 1) * limit
 
 	queryBuilder := p.HotelSelectQueryPrefix()
 

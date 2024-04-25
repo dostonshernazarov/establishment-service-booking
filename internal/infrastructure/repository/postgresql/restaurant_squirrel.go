@@ -204,11 +204,8 @@ func (p restaurantRepo) GetRestaurant(ctx context.Context, restaurant_id string)
 }
 
 // get a list of restaurants
-func (p restaurantRepo) ListRestaurants(ctx context.Context, page, limit int64) ([]*entity.Restaurant, error) {
+func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, error) {
 	var restaurants []*entity.Restaurant
-
-	// calculate offset
-	offset := (page - 1) * limit
 
 	queryBuilder := p.RestaurantSelectQueryPrefix()
 

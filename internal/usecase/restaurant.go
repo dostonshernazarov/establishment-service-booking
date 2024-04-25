@@ -49,11 +49,11 @@ func (r RestaurantService) GetRestaurant(ctx context.Context, restaurant_id stri
 	return r.repo.GetRestaurant(ctx, restaurant_id)
 }
 
-func (r RestaurantService) ListRestaurants(ctx context.Context, page, limit int64) ([]*entity.Restaurant, error) {
+func (r RestaurantService) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, error) {
 	ctx, cancel := context.WithTimeout(ctx, r.ctxTimeout)
 	defer cancel()
 
-	return r.repo.ListRestaurants(ctx, page, limit)
+	return r.repo.ListRestaurants(ctx, offset, limit)
 }
 
 func (r RestaurantService) UpdateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error) {

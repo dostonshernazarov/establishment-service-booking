@@ -119,7 +119,7 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 		return nil, fmt.Errorf("failed to execute SQL query for creating attraction: %v", err)
 	}
 
-	return nil, nil
+	return attraction, nil
 }
 
 // get an attraction
@@ -201,11 +201,9 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 }
 
 // get a list of attractions
-func (p attractionRepo) ListAttractions(ctx context.Context, page, limit int64) ([]*entity.Attraction, error) {
+func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, error) {
+	
 	var attractions []*entity.Attraction
-
-	// calculate offset
-	offset := (page - 1) * limit
 
 	queryBuilder := p.AttractionSelectQueryPrefix()
 
@@ -218,6 +216,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, page, limit int64) 
 		return nil, fmt.Errorf("failed to build SQL query for listing attractions: %v", err)
 	}
 
+	// println("\n\nquery: ",query)
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute SQL query for listing attractions: %v", err)
@@ -242,6 +241,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, page, limit int64) 
 		); err != nil {
 			return nil, fmt.Errorf("failed to scan row while listing attractions: %v", err)
 		}
+		println("\n\n name",attraction.AttractionName)
 
 		// Fetch location information for the attraction
 		locationQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", locationTableName)
@@ -292,6 +292,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, page, limit int64) 
 		attractions = append(attractions, &attraction)
 	}
 
+	
 	return attractions, nil
 }
 
@@ -315,8 +316,6 @@ func (p attractionRepo) UpdateAttraction(ctx context.Context, attraction *entity
 		return attraction, fmt.Errorf("failed to build SQL query for updating attracation: %v", err)
 	}
 
-	
-
 	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
 	if err != nil {
 		return attraction, fmt.Errorf("failed to execute SQL query for updating attraction: %v", err)
@@ -325,8 +324,6 @@ func (p attractionRepo) UpdateAttraction(ctx context.Context, attraction *entity
 	if commandTag.RowsAffected() == 0 {
 		return attraction, fmt.Errorf("no rows affected while updating attraction")
 	}
-
-	
 
 	return attraction, nil
 }

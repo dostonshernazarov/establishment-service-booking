@@ -1,7 +1,7 @@
 package app
 
 import (
-	pb "Booking/establishment-service-booking/genproto/establishment_service"
+	pb "Booking/establishment-service-booking/genproto/establishment-proto"
 	grpc_server "Booking/establishment-service-booking/internal/delivery/grpc/server"
 	invest_grpc "Booking/establishment-service-booking/internal/delivery/grpc/services"
 	"Booking/establishment-service-booking/internal/infrastructure/grpc_service_clients"

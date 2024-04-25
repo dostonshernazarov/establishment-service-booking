@@ -1,7 +1,7 @@
 package services
 
 import (
-	pb "Booking/establishment-service-booking/genproto/establishment_service"
+	pb "Booking/establishment-service-booking/genproto/establishment-proto"
 	"Booking/establishment-service-booking/internal/entity"
 	"Booking/establishment-service-booking/internal/usecase"
 	"Booking/establishment-service-booking/internal/usecase/event"
@@ -125,11 +125,11 @@ func (s establishmentRPC) GetAttraction(ctx context.Context, req *pb.GetAttracti
 }
 
 func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttractionsRequest) (*pb.ListAttractionsResponse, error) {
-	attractions, err := s.attracationUsecase.ListAttractions(ctx, req.Page, req.Limit)
+	attractions, err := s.attracationUsecase.ListAttractions(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
 	}
-
+	// println("\n\n error ", attractions)
 	// Convert []*entity.Attraction to []*pb.Attraction
 	var pbAttractions []*pb.Attraction
 	for _, attraction := range attractions {
@@ -361,7 +361,7 @@ func (s establishmentRPC) GetRestaurant(ctx context.Context, request *pb.GetRest
 }
 
 func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListRestaurantsRequest) (*pb.ListRestaurantsResponse, error) {
-	restaurants, err := s.restaurantUsecase.ListRestaurants(ctx, req.Page, req.Limit)
+	restaurants, err := s.restaurantUsecase.ListRestaurants(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch restaurants: %v", err)
 	}
@@ -598,7 +598,7 @@ func (s establishmentRPC) GetHotel(ctx context.Context, request *pb.GetHotelRequ
 }
 
 func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequest) (*pb.ListHotelsResponse, error) {
-	hotels, err := s.hotelUsecase.ListHotels(ctx, req.Page, req.Limit)
+	hotels, err := s.hotelUsecase.ListHotels(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch hotels: %v", err)
 	}
