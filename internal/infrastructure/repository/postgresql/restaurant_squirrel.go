@@ -121,7 +121,7 @@ func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity
 		return nil, fmt.Errorf("failed to execute SQL query for creating restaurant: %v", err)
 	}
 
-	return nil, nil
+	return restaurant, nil
 }
 
 // get a restaurant
