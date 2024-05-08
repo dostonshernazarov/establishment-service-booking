@@ -7,9 +7,9 @@ CREATE TABLE "location_table"(
     "country" VARCHAR(255) DEFAULT '',
     "city" VARCHAR(255) DEFAULT '',
     "state_province" VARCHAR(255) DEFAULT '',
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "room_table"(
@@ -21,9 +21,9 @@ CREATE TABLE "room_table"(
     "holidays" VARCHAR(255) DEFAULT '',
     "free_days" VARCHAR(255) DEFAULT '',
     "discount" FLOAT DEFAULT 0,
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "favourite_table"(
@@ -44,9 +44,9 @@ CREATE TABLE "image_table"(
     "image_id" UUID PRIMARY KEY NOT NULL,
     "establishment_id" UUID NOT NULL,
     "image_url" VARCHAR(255) DEFAULT '',
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "restaurant_table"(
@@ -59,9 +59,9 @@ CREATE TABLE "restaurant_table"(
     "contact_number" VARCHAR(255) DEFAULT '',
     "licence_url" VARCHAR(255) DEFAULT '',
     "website_url" VARCHAR(255) DEFAULT '',
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "attraction_table"(
@@ -73,9 +73,9 @@ CREATE TABLE "attraction_table"(
     "contact_number" VARCHAR(255) DEFAULT '',
     "licence_url" VARCHAR(255) DEFAULT '',
     "website_url" VARCHAR(255) DEFAULT '',
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "hotel_table"(
@@ -87,7 +87,7 @@ CREATE TABLE "hotel_table"(
     "contact_number" VARCHAR(255) DEFAULT '',
     "licence_url" VARCHAR(255) DEFAULT '',
     "website_url" VARCHAR(255) DEFAULT '',
-    "created_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(0) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "deleted_at" TIMESTAMP(0) WITH TIME ZONE
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );

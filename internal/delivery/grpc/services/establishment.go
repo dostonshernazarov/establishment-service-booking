@@ -3,11 +3,13 @@ package services
 import (
 	pb "Booking/establishment-service-booking/genproto/establishment-proto"
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/usecase"
 	"Booking/establishment-service-booking/internal/usecase/event"
 	"context"
-	"fmt"
+	"time"
 
+	"go.opentelemetry.io/otel/attribute"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -35,6 +37,12 @@ func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restauran
 
 // ATTRACTION
 func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.Attraction) (*pb.Attraction, error) {
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("attraction_id").String(attraction.AttractionId),
+	)
+	defer span.End()
+
 	var images []*entity.Image
 
 	for _, i := range attraction.Images {
@@ -43,10 +51,12 @@ func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.A
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.CreatedAt = time.Now().Local()
+		image.UpdatedAt = time.Now().Local()
 
 		images = append(images, &image)
 	}
-	_, err := s.attracationUsecase.CreateAttraction(ctx, &entity.Attraction{
+	response, err := s.attracationUsecase.CreateAttraction(ctx, &entity.Attraction{
 		AttractionId:   attraction.AttractionId,
 		OwnerId:        attraction.OwnerId,
 		AttractionName: attraction.AttractionName,
@@ -65,18 +75,60 @@ func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.A
 			Country:         attraction.Location.Country,
 			City:            attraction.Location.City,
 			StateProvince:   attraction.Location.StateProvince,
+			CreatedAt:       time.Now().Local(),
+			UpdatedAt:       time.Now().Local(),
 		},
+		CreatedAt: time.Now().Local(),
+		UpdatedAt: time.Now().Local(),
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	fmt.Println(attraction.AttractionId, " in service")
-	return attraction, nil
+	var respImages []*pb.Image
+
+	for _, respImage := range response.Images {
+		image := pb.Image{
+			ImageId:         respImage.ImageId,
+			EstablishmentId: respImage.EstablishmentId,
+			ImageUrl:        respImage.ImageUrl,
+			CreatedAt:       respImage.CreatedAt.String(),
+			UpdatedAt:       respImage.UpdatedAt.String(),
+		}
+
+		respImages = append(respImages, &image)
+	}
+
+	return &pb.Attraction{
+		AttractionId:   response.AttractionId,
+		OwnerId:        response.OwnerId,
+		AttractionName: response.AttractionName,
+		Description:    response.Description,
+		Rating:         response.Rating,
+		ContactNumber:  response.ContactNumber,
+		LicenceUrl:     response.LicenceUrl,
+		WebsiteUrl:     response.WebsiteUrl,
+		Images:         respImages,
+		Location: &pb.Location{
+			LocationId:      response.Location.LocationId,
+			EstablishmentId: response.Location.EstablishmentId,
+			Address:         response.Location.Address,
+			Latitude:        response.Location.Latitude,
+			Longitude:       response.Location.Longitude,
+			Country:         response.Location.Country,
+			City:            response.Location.City,
+			StateProvince:   response.Location.StateProvince,
+			CreatedAt:       response.Location.CreatedAt.String(),
+			UpdatedAt:       response.Location.UpdatedAt.String(),
+		},
+		CreatedAt: response.CreatedAt.String(),
+		UpdatedAt: response.UpdatedAt.String(),
+	}, nil
 }
 
 func (s establishmentRPC) GetAttraction(ctx context.Context, req *pb.GetAttractionRequest) (*pb.GetAttractionResponse, error) {
 	attraction, err := s.attracationUsecase.GetAttraction(ctx, req.AttractionId)
+
 	if err != nil {
 		return nil, err
 	}
@@ -129,8 +181,7 @@ func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttra
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
 	}
-	// println("\n\n error ", attractions)
-	// Convert []*entity.Attraction to []*pb.Attraction
+
 	var pbAttractions []*pb.Attraction
 	for _, attraction := range attractions {
 		var images []*pb.Image
@@ -177,17 +228,17 @@ func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttra
 }
 
 func (s establishmentRPC) UpdateAttraction(ctx context.Context, request *pb.UpdateAttractionRequest) (*pb.UpdateAttractionResponse, error) {
-	var imagesS []*entity.Image
+	// var imagesS []*entity.Image
 
-	for _, i := range request.Attraction.Images {
-		var image entity.Image
+	// for _, i := range request.Attraction.Images {
+	// 	var image entity.Image
 
-		image.ImageId = i.ImageId
-		image.EstablishmentId = i.EstablishmentId
-		image.ImageUrl = i.ImageUrl
+	// 	image.ImageId = i.ImageId
+	// 	image.EstablishmentId = i.EstablishmentId
+	// 	image.ImageUrl = i.ImageUrl
 
-		imagesS = append(imagesS, &image)
-	}
+	// 	imagesS = append(imagesS, &image)
+	// }
 	attraction, err := s.attracationUsecase.UpdateAttraction(ctx, &entity.Attraction{
 		AttractionId:   request.Attraction.AttractionId,
 		OwnerId:        request.Attraction.OwnerId,
@@ -197,7 +248,7 @@ func (s establishmentRPC) UpdateAttraction(ctx context.Context, request *pb.Upda
 		ContactNumber:  request.Attraction.ContactNumber,
 		LicenceUrl:     request.Attraction.LicenceUrl,
 		WebsiteUrl:     request.Attraction.WebsiteUrl,
-		Images:         imagesS,
+		// Images:         imagesS,
 		Location: entity.Location{
 			LocationId:      request.Attraction.Location.LocationId,
 			EstablishmentId: request.Attraction.Location.EstablishmentId,
@@ -517,10 +568,12 @@ func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.CreatedAt = time.Now().Local()
+		image.UpdatedAt = time.Now().Local()
 
 		images = append(images, &image)
 	}
-	_, err := s.hotelUsecase.CreateHotel(ctx, &entity.Hotel{
+	response, err := s.hotelUsecase.CreateHotel(ctx, &entity.Hotel{
 		HotelId:       hotel.HotelId,
 		OwnerId:       hotel.OwnerId,
 		HotelName:     hotel.HotelName,
@@ -539,13 +592,55 @@ func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb
 			Country:         hotel.Location.Country,
 			City:            hotel.Location.City,
 			StateProvince:   hotel.Location.StateProvince,
+			CreatedAt:       time.Now().Local(),
+			UpdatedAt:       time.Now().Local(),
 		},
+		CreatedAt: time.Now().Local(),
+		UpdatedAt: time.Now().Local(),
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	return hotel, nil
+	var respImages []*pb.Image
+
+	for _, respImage := range response.Images {
+		image := pb.Image{
+			ImageId:         respImage.ImageId,
+			EstablishmentId: respImage.EstablishmentId,
+			ImageUrl:        respImage.ImageUrl,
+			CreatedAt:       respImage.CreatedAt.String(),
+			UpdatedAt:       respImage.UpdatedAt.String(),
+		}
+
+		respImages = append(respImages, &image)
+	}
+
+	return &pb.Hotel{
+		HotelId:       response.HotelId,
+		OwnerId:       response.OwnerId,
+		HotelName:     response.HotelName,
+		Description:   response.Description,
+		Rating:        response.Rating,
+		ContactNumber: response.ContactNumber,
+		LicenceUrl:    response.LicenceUrl,
+		WebsiteUrl:    response.WebsiteUrl,
+		Images:        respImages,
+		Location: &pb.Location{
+			LocationId:      response.Location.LocationId,
+			EstablishmentId: response.Location.EstablishmentId,
+			Address:         response.Location.Address,
+			Latitude:        response.Location.Latitude,
+			Longitude:       response.Location.Longitude,
+			Country:         response.Location.Country,
+			City:            response.Location.City,
+			StateProvince:   response.Location.StateProvince,
+			CreatedAt:       response.Location.CreatedAt.String(),
+			UpdatedAt:       response.Location.UpdatedAt.String(),
+		},
+		CreatedAt: response.CreatedAt.String(),
+		UpdatedAt: response.UpdatedAt.String(),
+	}, nil
 }
 
 func (s establishmentRPC) GetHotel(ctx context.Context, request *pb.GetHotelRequest) (*pb.GetHotelResponse, error) {
@@ -650,17 +745,17 @@ func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequ
 }
 
 func (s establishmentRPC) UpdateHotel(ctx context.Context, request *pb.UpdateHotelRequest) (*pb.UpdateHotelResponse, error) {
-	var imagesS []*entity.Image
+	// var imagesS []*entity.Image
 
-	for _, i := range request.Hotel.Images {
-		var image entity.Image
+	// for _, i := range request.Hotel.Images {
+	// 	var image entity.Image
 
-		image.ImageId = i.ImageId
-		image.EstablishmentId = i.EstablishmentId
-		image.ImageUrl = i.ImageUrl
+	// 	image.ImageId = i.ImageId
+	// 	image.EstablishmentId = i.EstablishmentId
+	// 	image.ImageUrl = i.ImageUrl
 
-		imagesS = append(imagesS, &image)
-	}
+	// 	imagesS = append(imagesS, &image)
+	// }
 
 	hotel, err := s.hotelUsecase.UpdateHotel(ctx, &entity.Hotel{
 		HotelId:       request.Hotel.HotelId,
@@ -671,7 +766,7 @@ func (s establishmentRPC) UpdateHotel(ctx context.Context, request *pb.UpdateHot
 		ContactNumber: request.Hotel.ContactNumber,
 		LicenceUrl:    request.Hotel.LicenceUrl,
 		WebsiteUrl:    request.Hotel.WebsiteUrl,
-		Images:        imagesS,
+		// Images:        imagesS,
 		Location: entity.Location{
 			LocationId:      request.Hotel.Location.LocationId,
 			EstablishmentId: request.Hotel.Location.EstablishmentId,
