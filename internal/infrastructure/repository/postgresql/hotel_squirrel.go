@@ -5,6 +5,7 @@ import (
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/Masterminds/squirrel"
 )
@@ -41,7 +42,6 @@ func (p *hotelRepo) HotelSelectQueryPrefix() squirrel.SelectBuilder {
 		"website_url",
 		"created_at",
 		"updated_at",
-		"deleted_at",
 	).From(p.tableName)
 }
 
@@ -60,7 +60,6 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 		"state_province":   hotel.Location.StateProvince,
 		"created_at":       hotel.Location.CreatedAt,
 		"updated_at":       hotel.Location.UpdatedAt,
-		"deleted_at":       hotel.Location.DeletedAt,
 	}
 
 	query, args, err := p.db.Sq.Builder.Insert(locationTableName).SetMap(dataL).ToSql()
@@ -81,7 +80,6 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 			"image_url":        image.ImageUrl,
 			"created_at":       image.CreatedAt,
 			"updated_at":       image.UpdatedAt,
-			"deleted_at":       image.DeletedAt,
 		}
 
 		query, args, err := p.db.Sq.Builder.Insert(imageTableName).SetMap(dataI).ToSql()
@@ -107,7 +105,6 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 		"website_url":    hotel.WebsiteUrl,
 		"created_at":     hotel.CreatedAt,
 		"updated_at":     hotel.UpdatedAt,
-		"deleted_at":     hotel.DeletedAt,
 	}
 	query, args, err = p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
@@ -127,7 +124,7 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 	var hotel entity.Hotel
 
 	// Build the query to select attraction details
-	queryBuilder := p.HotelSelectQueryPrefix().Where(p.db.Sq.Equal("hotel_id", hotel_id))
+	queryBuilder := p.HotelSelectQueryPrefix().Where(p.db.Sq.Equal("hotel_id", hotel_id)).Where(p.db.Sq.Equal("deleted_at", nil))
 
 	// Get the SQL query and arguments from the query builder
 	query, args, err := queryBuilder.ToSql()
@@ -147,13 +144,12 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 		&hotel.WebsiteUrl,
 		&hotel.CreatedAt,
 		&hotel.UpdatedAt,
-		&hotel.DeletedAt,
 	); err != nil {
 		return nil, fmt.Errorf("failed to get hotel: %v", err)
 	}
 
 	// Fetch location information
-	locationQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", locationTableName)
+	locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
 	if err := p.db.QueryRow(ctx, locationQuery, hotel.HotelId).Scan(
 		&hotel.Location.LocationId,
 		&hotel.Location.EstablishmentId,
@@ -165,13 +161,12 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 		&hotel.Location.StateProvince,
 		&hotel.Location.CreatedAt,
 		&hotel.Location.UpdatedAt,
-		&hotel.Location.DeletedAt,
 	); err != nil {
 		return nil, fmt.Errorf("failed to get location for hotel: %v", err)
 	}
 
 	// Fetch images information
-	imagesQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", imageTableName)
+	imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 	rows, err := p.db.Query(ctx, imagesQuery, hotel_id)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get images for hotel: %v", err)
@@ -187,7 +182,6 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 			&image.ImageUrl,
 			&image.CreatedAt,
 			&image.UpdatedAt,
-			&image.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to scan image row: %v", err)
 		}
@@ -207,7 +201,7 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 	queryBuilder := p.HotelSelectQueryPrefix()
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(uint64(limit)).Offset(uint64(offset)).Where(p.db.Sq.Equal("deleted_at", nil))
+		queryBuilder = queryBuilder.Limit(uint64(limit)).Offset(uint64(offset)).Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC")
 	}
 
 	query, args, err := queryBuilder.ToSql()
@@ -235,13 +229,17 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 			&hotel.WebsiteUrl,
 			&hotel.CreatedAt,
 			&hotel.UpdatedAt,
-			&hotel.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to scan row while listing hotels: %v", err)
 		}
 
 		// Fetch location information for the hotel
-		locationQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", locationTableName)
+		locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
+
+		println()
+		println(hotel.HotelId)
+		println()
+
 		if err := p.db.QueryRow(ctx, locationQuery, hotel.HotelId).Scan(
 			&hotel.Location.LocationId,
 			&hotel.Location.EstablishmentId,
@@ -253,13 +251,12 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 			&hotel.Location.StateProvince,
 			&hotel.Location.CreatedAt,
 			&hotel.Location.UpdatedAt,
-			&hotel.Location.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to get location for hotel: %v", err)
 		}
 
 		// Fetch images information for the attraction
-		imagesQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", imageTableName)
+		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 		imageRows, err := p.db.Query(ctx, imagesQuery, hotel.HotelId)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get images for hotel: %v", err)
@@ -275,7 +272,6 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 				&image.ImageUrl,
 				&image.CreatedAt,
 				&image.UpdatedAt,
-				&image.DeletedAt,
 			); err != nil {
 				return nil, fmt.Errorf("failed to scan image row: %v", err)
 			}
@@ -293,40 +289,140 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 }
 
 // update a hotel
-func (p hotelRepo) UpdateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error) {
+func (p hotelRepo) UpdateHotel(ctx context.Context, request *entity.Hotel) (*entity.Hotel, error) {
 
 	clauses := map[string]interface{}{
-		"hotel_name":     hotel.HotelName,
-		"description":    hotel.Description,
-		"contact_number": hotel.ContactNumber,
-		"licence_url":    hotel.LicenceUrl,
-		"website_url":    hotel.WebsiteUrl,
+		"hotel_name":     request.HotelName,
+		"description":    request.Description,
+		"rating":         request.Rating,
+		"contact_number": request.ContactNumber,
+		"licence_url":    request.LicenceUrl,
+		"website_url":    request.WebsiteUrl,
+		"updated_at":     time.Now().Local(),
 	}
 
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
 		SetMap(clauses).
-		Where(p.db.Sq.Equal("hotel_id", hotel.HotelId), p.db.Sq.Equal("deleted_at", nil)).
+		Where(p.db.Sq.Equal("hotel_id", request.HotelId), p.db.Sq.Equal("deleted_at", nil)).
 		ToSql()
 	if err != nil {
-		return hotel, fmt.Errorf("failed to build SQL query for updating hotel: %v", err)
+		return nil, fmt.Errorf("failed to build SQL query for updating hotel: %v", err)
 	}
 
 	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
 	if err != nil {
-		return hotel, fmt.Errorf("failed to execute SQL query for updating hotel: %v", err)
+		return nil, fmt.Errorf("failed to execute SQL query for updating hotel: %v", err)
 	}
 
 	if commandTag.RowsAffected() == 0 {
-		return hotel, fmt.Errorf("no rows affected while updating hotel")
+		return nil, fmt.Errorf("no rows affected while updating hotel")
 	}
 
-	return hotel, nil
+	clausesL := map[string]interface{}{
+		"address":        request.Location.Address,
+		"latitude":       request.Location.Latitude,
+		"longitude":      request.Location.Longitude,
+		"country":        request.Location.Country,
+		"city":           request.Location.City,
+		"state_province": request.Location.StateProvince,
+		"updated_at":     time.Now().Local(),
+	}
+
+	sqlStrL, args, err := p.db.Sq.Builder.Update("location_table").
+		SetMap(clausesL).
+		Where(p.db.Sq.Equal("establishment_id", request.HotelId), p.db.Sq.Equal("deleted_at", nil)).
+		ToSql()
+	if err != nil {
+		return nil, fmt.Errorf("failed to build SQL query for updating location: %v", err)
+	}
+
+	commandTagL, err := p.db.Exec(ctx, sqlStrL, args...)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute SQL query for updating location: %v", err)
+	}
+
+	if commandTagL.RowsAffected() == 0 {
+		return nil, fmt.Errorf("no rows affected while updating hotel")
+	}
+
+	var hotel entity.Hotel
+
+	// Build the query to select hotel details
+	queryBuilder := p.HotelSelectQueryPrefix().Where(p.db.Sq.Equal("hotel_id", request.HotelId))
+
+	// Get the SQL query and arguments from the query builder
+	query, args, err := queryBuilder.ToSql()
+	if err != nil {
+		return nil, fmt.Errorf("failed to build SQL query for getting hotel: %v", err)
+	}
+
+	// Execute the query to fetch hotel details
+	if err := p.db.QueryRow(ctx, query, args...).Scan(
+		&hotel.HotelId,
+		&hotel.HotelName,
+		&hotel.OwnerId,
+		&hotel.Description,
+		&hotel.Rating,
+		&hotel.ContactNumber,
+		&hotel.LicenceUrl,
+		&hotel.WebsiteUrl,
+		&hotel.CreatedAt,
+		&hotel.UpdatedAt,
+	); err != nil {
+		return nil, fmt.Errorf("failed to get hotel: %v", err)
+	}
+
+	// Fetch location information
+	locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
+	if err := p.db.QueryRow(ctx, locationQuery, hotel.HotelId).Scan(
+		&hotel.Location.LocationId,
+		&hotel.Location.EstablishmentId,
+		&hotel.Location.Address,
+		&hotel.Location.Latitude,
+		&hotel.Location.Longitude,
+		&hotel.Location.Country,
+		&hotel.Location.City,
+		&hotel.Location.StateProvince,
+		&hotel.Location.CreatedAt,
+		&hotel.Location.UpdatedAt,
+	); err != nil {
+		return nil, fmt.Errorf("failed to get location for hotel: %v", err)
+	}
+
+	// Fetch images information
+	imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
+	rows, err := p.db.Query(ctx, imagesQuery, request.HotelId)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get images for hotel: %v", err)
+	}
+	defer rows.Close()
+
+	// Iterate over the rows and populate the Images slice
+	for rows.Next() {
+		var image entity.Image
+		if err := rows.Scan(
+			&image.ImageId,
+			&image.EstablishmentId,
+			&image.ImageUrl,
+			&image.CreatedAt,
+			&image.UpdatedAt,
+		); err != nil {
+			return nil, fmt.Errorf("failed to scan image row: %v", err)
+		}
+		hotel.Images = append(hotel.Images, &image)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error encountered while iterating over image rows: %v", err)
+	}
+
+	return &hotel, nil
 }
 
 // delete a hotel
 func (p hotelRepo) DeleteHotel(ctx context.Context, hotel_id string) error {
 	// Build the SQL query
-	sqlStr, args, err := p.db.Sq.Builder.Delete(p.tableName).
+	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
+		Set("deleted_at", time.Now().Local()).
 		Where(p.db.Sq.Equal("hotel_id", hotel_id)).
 		ToSql()
 	if err != nil {

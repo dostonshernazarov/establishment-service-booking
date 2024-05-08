@@ -5,6 +5,7 @@ import (
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/Masterminds/squirrel"
 )
@@ -41,7 +42,6 @@ func (p *attractionRepo) AttractionSelectQueryPrefix() squirrel.SelectBuilder {
 		"website_url",
 		"created_at",
 		"updated_at",
-		"deleted_at",
 	).From(p.tableName)
 }
 
@@ -60,7 +60,6 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 		"state_province":   attraction.Location.StateProvince,
 		"created_at":       attraction.Location.CreatedAt,
 		"updated_at":       attraction.Location.UpdatedAt,
-		"deleted_at":       attraction.Location.DeletedAt,
 	}
 
 	query, args, err := p.db.Sq.Builder.Insert(locationTableName).SetMap(dataL).ToSql()
@@ -70,7 +69,7 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 
 	_, err = p.db.Exec(ctx, query, args...)
 	if err != nil {
-		return nil, fmt.Errorf("failed to execute SQL query for creating attraction: %v", err)
+		return nil, fmt.Errorf("failed to execute SQL query for creating attraction's location: %v", err)
 	}
 
 	// insert images to image_table
@@ -81,7 +80,6 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 			"image_url":        image.ImageUrl,
 			"created_at":       image.CreatedAt,
 			"updated_at":       image.UpdatedAt,
-			"deleted_at":       image.DeletedAt,
 		}
 
 		query, args, err := p.db.Sq.Builder.Insert(imageTableName).SetMap(dataI).ToSql()
@@ -107,7 +105,6 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 		"website_url":     attraction.WebsiteUrl,
 		"created_at":      attraction.CreatedAt,
 		"updated_at":      attraction.UpdatedAt,
-		"deleted_at":      attraction.DeletedAt,
 	}
 	query, args, err = p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
@@ -127,7 +124,7 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 	var attraction entity.Attraction
 
 	// Build the query to select attraction details
-	queryBuilder := p.AttractionSelectQueryPrefix().Where(p.db.Sq.Equal("attraction_id", attraction_id))
+	queryBuilder := p.AttractionSelectQueryPrefix().Where(p.db.Sq.Equal("attraction_id", attraction_id)).Where(p.db.Sq.Equal("deleted_at", nil))
 
 	// Get the SQL query and arguments from the query builder
 	query, args, err := queryBuilder.ToSql()
@@ -147,13 +144,12 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 		&attraction.WebsiteUrl,
 		&attraction.CreatedAt,
 		&attraction.UpdatedAt,
-		&attraction.DeletedAt,
 	); err != nil {
 		return nil, fmt.Errorf("failed to get attraction: %v", err)
 	}
 
 	// Fetch location information
-	locationQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", locationTableName)
+	locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
 	if err := p.db.QueryRow(ctx, locationQuery, attraction.AttractionId).Scan(
 		&attraction.Location.LocationId,
 		&attraction.Location.EstablishmentId,
@@ -165,13 +161,12 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 		&attraction.Location.StateProvince,
 		&attraction.Location.CreatedAt,
 		&attraction.Location.UpdatedAt,
-		&attraction.Location.DeletedAt,
 	); err != nil {
 		return nil, fmt.Errorf("failed to get location for attraction: %v", err)
 	}
 
 	// Fetch images information
-	imagesQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", imageTableName)
+	imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 	rows, err := p.db.Query(ctx, imagesQuery, attraction_id)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get images for attraction: %v", err)
@@ -187,7 +182,6 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 			&image.ImageUrl,
 			&image.CreatedAt,
 			&image.UpdatedAt,
-			&image.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to scan image row: %v", err)
 		}
@@ -202,13 +196,13 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 
 // get a list of attractions
 func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, error) {
-	
+
 	var attractions []*entity.Attraction
 
 	queryBuilder := p.AttractionSelectQueryPrefix()
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(uint64(limit)).Offset(uint64(offset)).Where(p.db.Sq.Equal("deleted_at", nil))
+		queryBuilder = queryBuilder.Limit(uint64(limit)).Offset(uint64(offset)).Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC")
 	}
 
 	query, args, err := queryBuilder.ToSql()
@@ -216,7 +210,6 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 		return nil, fmt.Errorf("failed to build SQL query for listing attractions: %v", err)
 	}
 
-	// println("\n\nquery: ",query)
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute SQL query for listing attractions: %v", err)
@@ -237,14 +230,12 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 			&attraction.WebsiteUrl,
 			&attraction.CreatedAt,
 			&attraction.UpdatedAt,
-			&attraction.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to scan row while listing attractions: %v", err)
 		}
-		println("\n\n name",attraction.AttractionName)
 
 		// Fetch location information for the attraction
-		locationQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", locationTableName)
+		locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
 		if err := p.db.QueryRow(ctx, locationQuery, attraction.AttractionId).Scan(
 			&attraction.Location.LocationId,
 			&attraction.Location.EstablishmentId,
@@ -256,13 +247,12 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 			&attraction.Location.StateProvince,
 			&attraction.Location.CreatedAt,
 			&attraction.Location.UpdatedAt,
-			&attraction.Location.DeletedAt,
 		); err != nil {
 			return nil, fmt.Errorf("failed to get location for attraction: %v", err)
 		}
 
 		// Fetch images information for the attraction
-		imagesQuery := fmt.Sprintf("SELECT * FROM %s WHERE establishment_id = $1", imageTableName)
+		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 		imageRows, err := p.db.Query(ctx, imagesQuery, attraction.AttractionId)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get images for attraction: %v", err)
@@ -278,7 +268,6 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 				&image.ImageUrl,
 				&image.CreatedAt,
 				&image.UpdatedAt,
-				&image.DeletedAt,
 			); err != nil {
 				return nil, fmt.Errorf("failed to scan image row: %v", err)
 			}
@@ -292,47 +281,145 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 		attractions = append(attractions, &attraction)
 	}
 
-	
 	return attractions, nil
 }
 
 // update an attraction
-func (p attractionRepo) UpdateAttraction(ctx context.Context, attraction *entity.Attraction) (*entity.Attraction, error) {
+func (p attractionRepo) UpdateAttraction(ctx context.Context, request *entity.Attraction) (*entity.Attraction, error) {
 
-	// println("\n\n ", attraction)
 	clauses := map[string]interface{}{
-		"attraction_name": attraction.AttractionName,
-		"description":     attraction.Description,
-		"contact_number":  attraction.ContactNumber,
-		"licence_url":     attraction.LicenceUrl,
-		"website_url":     attraction.WebsiteUrl,
+		"attraction_name": request.AttractionName,
+		"description":     request.Description,
+		"rating":          request.Rating,
+		"contact_number":  request.ContactNumber,
+		"licence_url":     request.LicenceUrl,
+		"website_url":     request.WebsiteUrl,
+		"updated_at":      time.Now().Local(),
 	}
 
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
 		SetMap(clauses).
-		Where(p.db.Sq.Equal("attraction_id", attraction.AttractionId), p.db.Sq.Equal("deleted_at", nil)).
+		Where(p.db.Sq.Equal("attraction_id", request.AttractionId), p.db.Sq.Equal("deleted_at", nil)).
 		ToSql()
 	if err != nil {
-		return attraction, fmt.Errorf("failed to build SQL query for updating attracation: %v", err)
+		return nil, fmt.Errorf("failed to build SQL query for updating attracation: %v", err)
 	}
 
 	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
 	if err != nil {
-		return attraction, fmt.Errorf("failed to execute SQL query for updating attraction: %v", err)
+		return nil, fmt.Errorf("failed to execute SQL query for updating attraction: %v", err)
 	}
 
 	if commandTag.RowsAffected() == 0 {
-		return attraction, fmt.Errorf("no rows affected while updating attraction")
+		return nil, fmt.Errorf("no rows affected while updating attraction")
 	}
 
-	return attraction, nil
+	clausesL := map[string]interface{}{
+		"address":        request.Location.Address,
+		"latitude":       request.Location.Latitude,
+		"longitude":      request.Location.Longitude,
+		"country":        request.Location.Country,
+		"city":           request.Location.City,
+		"state_province": request.Location.StateProvince,
+		"updated_at":     time.Now().Local(),
+	}
+
+	sqlStrL, args, err := p.db.Sq.Builder.Update("location_table").
+		SetMap(clausesL).
+		Where(p.db.Sq.Equal("establishment_id", request.AttractionId), p.db.Sq.Equal("deleted_at", nil)).
+		ToSql()
+	if err != nil {
+		return nil, fmt.Errorf("failed to build SQL query for updating location: %v", err)
+	}
+
+	commandTagL, err := p.db.Exec(ctx, sqlStrL, args...)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute SQL query for updating attraction: %v", err)
+	}
+
+	if commandTagL.RowsAffected() == 0 {
+		return nil, fmt.Errorf("no rows affected while updating attraction")
+	}
+
+	var attraction entity.Attraction
+
+	// Build the query to select attraction details
+	queryBuilder := p.AttractionSelectQueryPrefix().Where(p.db.Sq.Equal("attraction_id", request.AttractionId))
+
+	// Get the SQL query and arguments from the query builder
+	query, args, err := queryBuilder.ToSql()
+	if err != nil {
+		return nil, fmt.Errorf("failed to build SQL query for getting attraction: %v", err)
+	}
+
+	// Execute the query to fetch attraction details
+	if err := p.db.QueryRow(ctx, query, args...).Scan(
+		&attraction.AttractionId,
+		&attraction.AttractionName,
+		&attraction.OwnerId,
+		&attraction.Description,
+		&attraction.Rating,
+		&attraction.ContactNumber,
+		&attraction.LicenceUrl,
+		&attraction.WebsiteUrl,
+		&attraction.CreatedAt,
+		&attraction.UpdatedAt,
+	); err != nil {
+		return nil, fmt.Errorf("failed to get attraction: %v", err)
+	}
+
+	// Fetch location information
+	locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
+	if err := p.db.QueryRow(ctx, locationQuery, attraction.AttractionId).Scan(
+		&attraction.Location.LocationId,
+		&attraction.Location.EstablishmentId,
+		&attraction.Location.Address,
+		&attraction.Location.Latitude,
+		&attraction.Location.Longitude,
+		&attraction.Location.Country,
+		&attraction.Location.City,
+		&attraction.Location.StateProvince,
+		&attraction.Location.CreatedAt,
+		&attraction.Location.UpdatedAt,
+	); err != nil {
+		return nil, fmt.Errorf("failed to get location for attraction: %v", err)
+	}
+
+	// Fetch images information
+	imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
+	rows, err := p.db.Query(ctx, imagesQuery, request.AttractionId)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get images for attraction: %v", err)
+	}
+	defer rows.Close()
+
+	// Iterate over the rows and populate the Images slice
+	for rows.Next() {
+		var image entity.Image
+		if err := rows.Scan(
+			&image.ImageId,
+			&image.EstablishmentId,
+			&image.ImageUrl,
+			&image.CreatedAt,
+			&image.UpdatedAt,
+		); err != nil {
+			return nil, fmt.Errorf("failed to scan image row: %v", err)
+		}
+		attraction.Images = append(attraction.Images, &image)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error encountered while iterating over image rows: %v", err)
+	}
+
+	return &attraction, nil
 }
 
-// delete an attraction completely
-func (p attractionRepo) DeleteAttraction(ctx context.Context, attractionID string) error {
+// delete an attraction softly
+func (p attractionRepo) DeleteAttraction(ctx context.Context, attraction_id string) error {
 	// Build the SQL query
-	sqlStr, args, err := p.db.Sq.Builder.Delete(p.tableName).
-		Where(p.db.Sq.Equal("attraction_id", attractionID)).
+	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
+		Set("deleted_at", time.Now().Local()).
+		Where(p.db.Sq.Equal("attraction_id", attraction_id)).
 		ToSql()
 	if err != nil {
 		return fmt.Errorf("failed to build SQL query for deleting attraction: %v", err)

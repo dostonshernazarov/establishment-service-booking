@@ -37,7 +37,7 @@ func (a AttractionService) CreateAttraction(ctx context.Context, attracation *en
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
-	a.beforeRequest(&attracation.AttractionId, &attracation.CreatedAt, &attracation.UpdatedAt, nil)
+	a.beforeRequest(nil, &attracation.CreatedAt, &attracation.UpdatedAt, nil)
 
 	return a.repo.CreateAttraction(ctx, attracation)
 }

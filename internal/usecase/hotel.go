@@ -37,7 +37,7 @@ func (h HotelService) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*en
 	ctx, cancel := context.WithTimeout(ctx, h.ctxTimeout)
 	defer cancel()
 
-	h.beforeRequest(&hotel.HotelId, &hotel.CreatedAt, &hotel.UpdatedAt, nil)
+	h.beforeRequest(nil, &hotel.CreatedAt, &hotel.UpdatedAt, nil)
 
 	return h.repo.CreateHotel(ctx, hotel)
 }
