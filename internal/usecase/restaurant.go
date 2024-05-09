@@ -37,7 +37,7 @@ func (r RestaurantService) CreateRestaurant(ctx context.Context, restaurant *ent
 	ctx, cancel := context.WithTimeout(ctx, r.ctxTimeout)
 	defer cancel()
 
-	r.beforeRequest(&restaurant.RestaurantId, &restaurant.CreatedAt, &restaurant.UpdatedAt, nil)
+	r.beforeRequest(nil, &restaurant.CreatedAt, &restaurant.UpdatedAt, nil)
 
 	return r.repo.CreateRestaurant(ctx, restaurant)
 }

@@ -3126,4 +3126,4 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-05-09T12:52:53.899+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50024"}
 2024-05-09T12:53:44.890+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-09T12:53:44+05:00", "grpc.request.deadline": "2024-05-09T12:54:44+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateHotel", "peer.address": "127.0.0.1:40788", "grpc.code": "OK", "grpc.time_ms": 21.539}
 2024-05-09T13:08:34.494+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-09T13:08:34+05:00", "grpc.request.deadline": "2024-05-09T13:09:34+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "GetHotel", "peer.address": "127.0.0.1:40788", "grpc.code": "OK", "grpc.time_ms": 6.393}
-2024-05-09T13:31:26.898+0500	INFO	app/main.go:36	User service stops !
+2024-05-09T13:31:26.898+0500	INFO	app/main.go:36	User servic
