@@ -329,10 +329,12 @@ func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.R
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.CreatedAt = time.Now().Local()
+		image.UpdatedAt = time.Now().Local()
 
 		images = append(images, &image)
 	}
-	_, err := s.restaurantUsecase.CreateRestaurant(ctx, &entity.Restaurant{
+	response, err := s.restaurantUsecase.CreateRestaurant(ctx, &entity.Restaurant{
 		RestaurantId:   restaurant.RestaurantId,
 		OwnerId:        restaurant.OwnerId,
 		RestaurantName: restaurant.RestaurantName,
@@ -352,13 +354,56 @@ func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.R
 			Country:         restaurant.Location.Country,
 			City:            restaurant.Location.City,
 			StateProvince:   restaurant.Location.StateProvince,
+			CreatedAt:       time.Now().Local(),
+			UpdatedAt:       time.Now().Local(),
 		},
+		CreatedAt: time.Now().Local(),
+		UpdatedAt: time.Now().Local(),
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	return restaurant, nil
+	var respImages []*pb.Image
+
+	for _, respImage := range response.Images {
+		image := pb.Image{
+			ImageId:         respImage.ImageId,
+			EstablishmentId: respImage.EstablishmentId,
+			ImageUrl:        respImage.ImageUrl,
+			CreatedAt:       respImage.CreatedAt.String(),
+			UpdatedAt:       respImage.UpdatedAt.String(),
+		}
+
+		respImages = append(respImages, &image)
+	}
+
+	return &pb.Restaurant{
+		RestaurantId:   response.RestaurantId,
+		OwnerId:        response.OwnerId,
+		RestaurantName: response.RestaurantName,
+		Description:    response.Description,
+		Rating:         response.Rating,
+		OpeningHours:   response.OpeningHours,
+		ContactNumber:  response.ContactNumber,
+		LicenceUrl:     response.LicenceUrl,
+		WebsiteUrl:     response.WebsiteUrl,
+		Images:         respImages,
+		Location: &pb.Location{
+			LocationId:      response.Location.LocationId,
+			EstablishmentId: response.Location.EstablishmentId,
+			Address:         response.Location.Address,
+			Latitude:        response.Location.Latitude,
+			Longitude:       response.Location.Longitude,
+			Country:         response.Location.Country,
+			City:            response.Location.City,
+			StateProvince:   response.Location.StateProvince,
+			CreatedAt:       response.Location.CreatedAt.String(),
+			UpdatedAt:       response.Location.UpdatedAt.String(),
+		},
+		CreatedAt: response.CreatedAt.String(),
+		UpdatedAt: response.UpdatedAt.String(),
+	}, nil
 }
 
 func (s establishmentRPC) GetRestaurant(ctx context.Context, request *pb.GetRestaurantRequest) (*pb.GetRestaurantResponse, error) {
@@ -417,7 +462,6 @@ func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListResta
 		return nil, status.Errorf(codes.Internal, "failed to fetch restaurants: %v", err)
 	}
 
-	// Convert []*entity.Restaurant to []*pb.Restaurant
 	var pbRestaurants []*pb.Restaurant
 	for _, restaurant := range restaurants {
 		var images []*pb.Image

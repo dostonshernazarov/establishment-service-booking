@@ -418,7 +418,7 @@ func (p hotelRepo) UpdateHotel(ctx context.Context, request *entity.Hotel) (*ent
 	return &hotel, nil
 }
 
-// delete a hotel
+// delete a hotel softly
 func (p hotelRepo) DeleteHotel(ctx context.Context, hotel_id string) error {
 	// Build the SQL query
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
