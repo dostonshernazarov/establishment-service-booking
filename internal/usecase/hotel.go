@@ -15,7 +15,7 @@ import (
 type Hotel interface {
 	CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error)
 	GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel, error)
-	ListHotels(ctx context.Context, page, limit int64) ([]*entity.Hotel, error)
+	ListHotels(ctx context.Context, page, limit int64) ([]*entity.Hotel, uint64, error)
 	UpdateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error)
 	DeleteHotel(ctx context.Context, hotel_id string) error
 }
@@ -49,7 +49,7 @@ func (h HotelService) GetHotel(ctx context.Context, hotel_id string) (*entity.Ho
 	return h.repo.GetHotel(ctx, hotel_id)
 }
 
-func (h HotelService) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, error) {
+func (h HotelService) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, uint64, error) {
 	ctx, cancel := context.WithTimeout(ctx, h.ctxTimeout)
 	defer cancel()
 

@@ -15,9 +15,10 @@ import (
 type Attraction interface {
 	CreateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error)
 	GetAttraction(ctx context.Context, attraction_id string) (*entity.Attraction, error)
-	ListAttractions(ctx context.Context, page, limit int64) ([]*entity.Attraction, error)
+	ListAttractions(ctx context.Context, page, limit int64) ([]*entity.Attraction, uint64, error)
 	UpdateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error)
 	DeleteAttraction(ctx context.Context, attraction_id string) error
+	ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error)
 }
 
 type AttractionService struct {
@@ -49,7 +50,7 @@ func (a AttractionService) GetAttraction(ctx context.Context, attraction_id stri
 	return a.repo.GetAttraction(ctx, attraction_id)
 }
 
-func (a AttractionService) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, error) {
+func (a AttractionService) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, uint64, error) {
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
@@ -74,4 +75,11 @@ func (a AttractionService) DeleteAttraction(ctx context.Context, attraction_id s
 	defer cancel()
 
 	return a.repo.DeleteAttraction(ctx, attraction_id)
+}
+
+func (a AttractionService) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error) {
+	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
+	defer cancel()
+
+	return a.repo.ListAttractionsByLocation(ctx, offset, limit, country, city, state_province)
 }

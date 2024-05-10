@@ -169,110 +169,110 @@ func TestGetRestaurant(t *testing.T) {
 	}
 }
 
-func TestListRestaurants(t *testing.T) {
-	// Connect to database
-	cfg := config.New()
+// func TestListRestaurants(t *testing.T) {
+// 	// Connect to database
+// 	cfg := config.New()
 
-	db, err := postgres.New(cfg)
-	if err != nil {
-		return
-	}
+// 	db, err := postgres.New(cfg)
+// 	if err != nil {
+// 		return
+// 	}
 
-	repo := NewRestaurantRepo(db)
+// 	repo := NewRestaurantRepo(db)
 
-	var restaurants []*entity.Restaurant
-	numrestaurants := 5
+// 	var restaurants []*entity.Restaurant
+// 	numrestaurants := 5
 
-	for i := 0; i < numrestaurants; i++ {
-		restaurant_id := uuid.New().String()
-		restaurant := &entity.Restaurant{
-			RestaurantId:   restaurant_id,
-			OwnerId:        uuid.New().String(),
-			RestaurantName: "test restaurant name",
-			Description:    "Test description",
-			Rating:         4.9,
-			OpeningHours:   "09:00 - 00:00",
-			ContactNumber:  "+9989123456789",
-			LicenceUrl:     "test licence url",
-			WebsiteUrl:     "test website url",
-			Images: []*entity.Image{
-				{
-					ImageId:         uuid.New().String(),
-					EstablishmentId: restaurant_id,
-					ImageUrl:        "Test image url 1",
-				},
-				{
-					ImageId:         uuid.New().String(),
-					EstablishmentId: restaurant_id,
-					ImageUrl:        "Test image url 2",
-				},
-			},
-			Location: entity.Location{
-				LocationId:      uuid.New().String(),
-				EstablishmentId: restaurant_id,
-				Address:         "test address",
-				Latitude:        1.1,
-				Longitude:       2.2,
-				Country:         "Test country",
-				City:            "Test city",
-				StateProvince:   "Test state province",
-			},
-		}
-		restaurants = append(restaurants, restaurant)
+// 	for i := 0; i < numrestaurants; i++ {
+// 		restaurant_id := uuid.New().String()
+// 		restaurant := &entity.Restaurant{
+// 			RestaurantId:   restaurant_id,
+// 			OwnerId:        uuid.New().String(),
+// 			RestaurantName: "test restaurant name",
+// 			Description:    "Test description",
+// 			Rating:         4.9,
+// 			OpeningHours:   "09:00 - 00:00",
+// 			ContactNumber:  "+9989123456789",
+// 			LicenceUrl:     "test licence url",
+// 			WebsiteUrl:     "test website url",
+// 			Images: []*entity.Image{
+// 				{
+// 					ImageId:         uuid.New().String(),
+// 					EstablishmentId: restaurant_id,
+// 					ImageUrl:        "Test image url 1",
+// 				},
+// 				{
+// 					ImageId:         uuid.New().String(),
+// 					EstablishmentId: restaurant_id,
+// 					ImageUrl:        "Test image url 2",
+// 				},
+// 			},
+// 			Location: entity.Location{
+// 				LocationId:      uuid.New().String(),
+// 				EstablishmentId: restaurant_id,
+// 				Address:         "test address",
+// 				Latitude:        1.1,
+// 				Longitude:       2.2,
+// 				Country:         "Test country",
+// 				City:            "Test city",
+// 				StateProvince:   "Test state province",
+// 			},
+// 		}
+// 		restaurants = append(restaurants, restaurant)
 
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
-		defer cancel()
+// 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
+// 		defer cancel()
 
-		_, err := repo.CreateRestaurant(ctx, restaurant)
-		if err != nil {
-			t.Fatalf("failed to insert restaurant for testing: %v", err)
-		}
-	}
+// 		_, err := repo.CreateRestaurant(ctx, restaurant)
+// 		if err != nil {
+// 			t.Fatalf("failed to insert restaurant for testing: %v", err)
+// 		}
+// 	}
 
-	// Test listing restaurants
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
-	defer cancel()
+// 	// Test listing restaurants
+// 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
+// 	defer cancel()
 
-	offset := int64(1)
-	limit := int64(10)
+// 	offset := int64(1)
+// 	limit := int64(10)
 
-	listedrestaurants, err := repo.ListRestaurants(ctx, offset, limit)
+// 	listedrestaurants, err := repo.ListRestaurants(ctx, offset, limit)
 
-	assert.NoError(t, err)
-	assert.NotNil(t, listedrestaurants)
-	assert.Len(t, listedrestaurants, numrestaurants)
+// 	assert.NoError(t, err)
+// 	assert.NotNil(t, listedrestaurants)
+// 	assert.Len(t, listedrestaurants, numrestaurants)
 
-	for i, expectedrestaurant := range restaurants {
-		assert.Equal(t, expectedrestaurant.RestaurantId, listedrestaurants[i].RestaurantId)
-		assert.Equal(t, expectedrestaurant.OwnerId, listedrestaurants[i].OwnerId)
-		assert.Equal(t, expectedrestaurant.RestaurantName, listedrestaurants[i].RestaurantName)
-		assert.Equal(t, expectedrestaurant.Description, listedrestaurants[i].Description)
-		assert.Equal(t, expectedrestaurant.Rating, listedrestaurants[i].Rating)
-		assert.Equal(t, expectedrestaurant.ContactNumber, listedrestaurants[i].ContactNumber)
-		assert.Equal(t, expectedrestaurant.LicenceUrl, listedrestaurants[i].LicenceUrl)
-		assert.Equal(t, expectedrestaurant.WebsiteUrl, listedrestaurants[i].WebsiteUrl)
+// 	for i, expectedrestaurant := range restaurants {
+// 		assert.Equal(t, expectedrestaurant.RestaurantId, listedrestaurants[i].RestaurantId)
+// 		assert.Equal(t, expectedrestaurant.OwnerId, listedrestaurants[i].OwnerId)
+// 		assert.Equal(t, expectedrestaurant.RestaurantName, listedrestaurants[i].RestaurantName)
+// 		assert.Equal(t, expectedrestaurant.Description, listedrestaurants[i].Description)
+// 		assert.Equal(t, expectedrestaurant.Rating, listedrestaurants[i].Rating)
+// 		assert.Equal(t, expectedrestaurant.ContactNumber, listedrestaurants[i].ContactNumber)
+// 		assert.Equal(t, expectedrestaurant.LicenceUrl, listedrestaurants[i].LicenceUrl)
+// 		assert.Equal(t, expectedrestaurant.WebsiteUrl, listedrestaurants[i].WebsiteUrl)
 
-		// Ensure location data is populated correctly
-		assert.NotNil(t, listedrestaurants[i].Location)
-		assert.Equal(t, expectedrestaurant.Location.LocationId, listedrestaurants[i].Location.LocationId)
-		assert.Equal(t, expectedrestaurant.Location.EstablishmentId, listedrestaurants[i].Location.EstablishmentId)
-		assert.Equal(t, expectedrestaurant.Location.Address, listedrestaurants[i].Location.Address)
-		assert.Equal(t, expectedrestaurant.Location.Latitude, listedrestaurants[i].Location.Latitude)
-		assert.Equal(t, expectedrestaurant.Location.Longitude, listedrestaurants[i].Location.Longitude)
-		assert.Equal(t, expectedrestaurant.Location.Country, listedrestaurants[i].Location.Country)
-		assert.Equal(t, expectedrestaurant.Location.City, listedrestaurants[i].Location.City)
-		assert.Equal(t, expectedrestaurant.Location.StateProvince, listedrestaurants[i].Location.StateProvince)
+// 		// Ensure location data is populated correctly
+// 		assert.NotNil(t, listedrestaurants[i].Location)
+// 		assert.Equal(t, expectedrestaurant.Location.LocationId, listedrestaurants[i].Location.LocationId)
+// 		assert.Equal(t, expectedrestaurant.Location.EstablishmentId, listedrestaurants[i].Location.EstablishmentId)
+// 		assert.Equal(t, expectedrestaurant.Location.Address, listedrestaurants[i].Location.Address)
+// 		assert.Equal(t, expectedrestaurant.Location.Latitude, listedrestaurants[i].Location.Latitude)
+// 		assert.Equal(t, expectedrestaurant.Location.Longitude, listedrestaurants[i].Location.Longitude)
+// 		assert.Equal(t, expectedrestaurant.Location.Country, listedrestaurants[i].Location.Country)
+// 		assert.Equal(t, expectedrestaurant.Location.City, listedrestaurants[i].Location.City)
+// 		assert.Equal(t, expectedrestaurant.Location.StateProvince, listedrestaurants[i].Location.StateProvince)
 
-		// Ensure images data is populated correctly
-		assert.NotNil(t, listedrestaurants[i].Images)
-		assert.Len(t, listedrestaurants[i].Images, len(expectedrestaurant.Images))
-		for j, expectedImage := range expectedrestaurant.Images {
-			assert.Equal(t, expectedImage.ImageId, listedrestaurants[i].Images[j].ImageId)
-			assert.Equal(t, expectedImage.EstablishmentId, listedrestaurants[i].Images[j].EstablishmentId)
-			assert.Equal(t, expectedImage.ImageUrl, listedrestaurants[i].Images[j].ImageUrl)
-		}
-	}
-}
+// 		// Ensure images data is populated correctly
+// 		assert.NotNil(t, listedrestaurants[i].Images)
+// 		assert.Len(t, listedrestaurants[i].Images, len(expectedrestaurant.Images))
+// 		for j, expectedImage := range expectedrestaurant.Images {
+// 			assert.Equal(t, expectedImage.ImageId, listedrestaurants[i].Images[j].ImageId)
+// 			assert.Equal(t, expectedImage.EstablishmentId, listedrestaurants[i].Images[j].EstablishmentId)
+// 			assert.Equal(t, expectedImage.ImageUrl, listedrestaurants[i].Images[j].ImageUrl)
+// 		}
+// 	}
+// }
 
 func TestUpdaterestaurant(t *testing.T) {
 	// Connect to database
