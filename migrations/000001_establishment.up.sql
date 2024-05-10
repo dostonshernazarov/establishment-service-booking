@@ -29,7 +29,10 @@ CREATE TABLE "room_table"(
 CREATE TABLE "favourite_table"(
     "favourite_id" UUID PRIMARY KEY NOT NULL,
     "establishment_id" UUID NOT NULL,
-    "user_id" UUID NOT NULL
+    "user_id" UUID NOT NULL,
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "review_table"(
@@ -37,7 +40,10 @@ CREATE TABLE "review_table"(
     "establishment_id" UUID NOT NULL,
     "user_id" UUID NOT NULL,
     "rating" FLOAT DEFAULT 0,
-    "comment" TEXT DEFAULT ''
+    "comment" TEXT DEFAULT '',
+    "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
+    "deleted_at" TIMESTAMP(0)
 );
 
 CREATE TABLE "image_table"(

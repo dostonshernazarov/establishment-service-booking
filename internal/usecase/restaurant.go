@@ -15,7 +15,7 @@ import (
 type Restaurant interface {
 	CreateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error)
 	GetRestaurant(ctx context.Context, restaurant_id string) (*entity.Restaurant, error)
-	ListRestaurants(ctx context.Context, page, limit int64) ([]*entity.Restaurant, error)
+	ListRestaurants(ctx context.Context, page, limit int64) ([]*entity.Restaurant, uint64, error)
 	UpdateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error)
 	DeleteRestaurant(ctx context.Context, restaurant_id string) error
 }
@@ -49,7 +49,7 @@ func (r RestaurantService) GetRestaurant(ctx context.Context, restaurant_id stri
 	return r.repo.GetRestaurant(ctx, restaurant_id)
 }
 
-func (r RestaurantService) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, error) {
+func (r RestaurantService) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, uint64, error) {
 	ctx, cancel := context.WithTimeout(ctx, r.ctxTimeout)
 	defer cancel()
 

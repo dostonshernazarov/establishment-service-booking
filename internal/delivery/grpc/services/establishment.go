@@ -20,15 +20,19 @@ type establishmentRPC struct {
 	attracationUsecase usecase.Attraction
 	restaurantUsecase  usecase.Restaurant
 	hotelUsecase       usecase.Hotel
+	favouriteUsecase   usecase.Favourite
+	reviewUsecase      usecase.Review
 	brokerProducer     event.BrokerProducer
 }
 
-func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restaurantUsecase usecase.Restaurant, hotelUsecase usecase.Hotel, brokerProducer event.BrokerProducer) pb.EstablishmentServiceServer {
+func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restaurantUsecase usecase.Restaurant, hotelUsecase usecase.Hotel, favouriteUsecase usecase.Favourite, reviewUsecase usecase.Review, brokerProducer event.BrokerProducer) pb.EstablishmentServiceServer {
 	return &establishmentRPC{
 		logger:             logger,
 		attracationUsecase: attracationUsecase,
 		restaurantUsecase:  restaurantUsecase,
 		hotelUsecase:       hotelUsecase,
+		favouriteUsecase:   favouriteUsecase,
+		reviewUsecase:      reviewUsecase,
 		brokerProducer:     brokerProducer,
 	}
 }
@@ -177,7 +181,7 @@ func (s establishmentRPC) GetAttraction(ctx context.Context, req *pb.GetAttracti
 }
 
 func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttractionsRequest) (*pb.ListAttractionsResponse, error) {
-	attractions, err := s.attracationUsecase.ListAttractions(ctx, req.Offset, req.Limit)
+	attractions, overall, err := s.attracationUsecase.ListAttractions(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
 	}
@@ -224,6 +228,7 @@ func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttra
 
 	return &pb.ListAttractionsResponse{
 		Attractions: pbAttractions,
+		Overall:     overall,
 	}, nil
 }
 
@@ -316,6 +321,57 @@ func (s establishmentRPC) DeleteAttraction(ctx context.Context, req *pb.DeleteAt
 
 	return &pb.DeleteAttractionResponse{
 		Success: true,
+	}, nil
+}
+
+func (s establishmentRPC) ListAttractionsByLocation(ctx context.Context, request *pb.ListAttractionsByLocationRequest) (*pb.ListAttractionsByLocationResponse, error) {
+	attractions, err := s.attracationUsecase.ListAttractionsByLocation(ctx, request.Offset, request.Limit, request.Country, request.City, request.StateProvince)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
+	}
+
+	var pbAttractions []*pb.Attraction
+	for _, attraction := range attractions {
+		var images []*pb.Image
+		for _, i := range attraction.Images {
+			images = append(images, &pb.Image{
+				ImageId:         i.ImageId,
+				EstablishmentId: i.EstablishmentId,
+				ImageUrl:        i.ImageUrl,
+				CreatedAt:       i.CreatedAt.String(),
+				UpdatedAt:       i.UpdatedAt.String(),
+			})
+		}
+
+		pbAttractions = append(pbAttractions, &pb.Attraction{
+			AttractionId:   attraction.AttractionId,
+			OwnerId:        attraction.OwnerId,
+			AttractionName: attraction.AttractionName,
+			Description:    attraction.Description,
+			Rating:         attraction.Rating,
+			ContactNumber:  attraction.ContactNumber,
+			LicenceUrl:     attraction.LicenceUrl,
+			WebsiteUrl:     attraction.WebsiteUrl,
+			Images:         images,
+			Location: &pb.Location{
+				LocationId:      attraction.Location.LocationId,
+				EstablishmentId: attraction.Location.EstablishmentId,
+				Address:         attraction.Location.Address,
+				Latitude:        attraction.Location.Latitude,
+				Longitude:       attraction.Location.Longitude,
+				Country:         attraction.Location.Country,
+				City:            attraction.Location.City,
+				StateProvince:   attraction.Location.StateProvince,
+				CreatedAt:       attraction.CreatedAt.String(),
+				UpdatedAt:       attraction.UpdatedAt.String(),
+			},
+			CreatedAt: attraction.CreatedAt.String(),
+			UpdatedAt: attraction.UpdatedAt.String(),
+		})
+	}
+
+	return &pb.ListAttractionsByLocationResponse{
+		Attractions: pbAttractions,
 	}, nil
 }
 
@@ -457,7 +513,7 @@ func (s establishmentRPC) GetRestaurant(ctx context.Context, request *pb.GetRest
 }
 
 func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListRestaurantsRequest) (*pb.ListRestaurantsResponse, error) {
-	restaurants, err := s.restaurantUsecase.ListRestaurants(ctx, req.Offset, req.Limit)
+	restaurants, overall, err := s.restaurantUsecase.ListRestaurants(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch restaurants: %v", err)
 	}
@@ -505,6 +561,7 @@ func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListResta
 
 	return &pb.ListRestaurantsResponse{
 		Restaurants: pbRestaurants,
+		Overall:     overall,
 	}, nil
 }
 
@@ -737,7 +794,7 @@ func (s establishmentRPC) GetHotel(ctx context.Context, request *pb.GetHotelRequ
 }
 
 func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequest) (*pb.ListHotelsResponse, error) {
-	hotels, err := s.hotelUsecase.ListHotels(ctx, req.Offset, req.Limit)
+	hotels, overall, err := s.hotelUsecase.ListHotels(ctx, req.Offset, req.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch hotels: %v", err)
 	}
@@ -784,7 +841,8 @@ func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequ
 	}
 
 	return &pb.ListHotelsResponse{
-		Hotels: pbHotels,
+		Hotels:  pbHotels,
+		Overall: overall,
 	}, nil
 }
 
@@ -877,6 +935,135 @@ func (s establishmentRPC) DeleteHotel(ctx context.Context, request *pb.DeleteHot
 	}
 
 	return &pb.DeleteHotelResponse{
+		Success: true,
+	}, nil
+}
+
+// FAVOURITE
+func (s establishmentRPC) AddToFavourites(ctx context.Context, request *pb.AddToFavouritesRequest) (*pb.AddToFavouritesResponse, error) {
+	response, err := s.favouriteUsecase.AddToFavourites(ctx, &entity.Favourite{
+		FavouriteId:     request.Favourite.FavouriteId,
+		EstablishmentId: request.Favourite.EstablishmentId,
+		UserId:          request.Favourite.UserId,
+		CreatedAt:       time.Now().Local(),
+		UpdatedAt:       time.Now().Local(),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddToFavouritesResponse{
+		Favourite: &pb.Favourite{
+			FavouriteId:     response.FavouriteId,
+			EstablishmentId: response.EstablishmentId,
+			UserId:          response.UserId,
+			CreatedAt:       response.CreatedAt.String(),
+			UpdatedAt:       response.UpdatedAt.String(),
+		},
+	}, nil
+}
+
+func (s establishmentRPC) RemoveFromFavourites(ctx context.Context, request *pb.RemoveFromFavouritesRequest) (*pb.RemoveFromFavouritesResponse, error) {
+	if err := s.favouriteUsecase.RemoveFromFavourites(ctx, request.FavouriteId); err != nil {
+		return &pb.RemoveFromFavouritesResponse{
+			Success: false,
+		}, nil
+	}
+
+	return &pb.RemoveFromFavouritesResponse{
+		Success: true,
+	}, nil
+}
+
+func (s establishmentRPC) ListFavouritesByUserId(ctx context.Context, request *pb.ListFavouritesByUserIdRequest) (*pb.ListFavouritesByUserIdResponse, error) {
+	response, err := s.favouriteUsecase.ListFavouritesByUserId(ctx, request.UserId)
+	if err != nil {
+		return nil, err
+	}
+
+	var favourites []*pb.Favourite
+
+	for _, respFavourite := range response {
+		favourite := pb.Favourite{
+			FavouriteId:     respFavourite.FavouriteId,
+			EstablishmentId: respFavourite.EstablishmentId,
+			UserId:          respFavourite.UserId,
+			CreatedAt:       respFavourite.CreatedAt.String(),
+			UpdatedAt:       respFavourite.UpdatedAt.String(),
+		}
+
+		favourites = append(favourites, &favourite)
+	}
+
+	return &pb.ListFavouritesByUserIdResponse{
+		Favourites: favourites,
+	}, nil
+}
+
+// REVIEW
+func (s establishmentRPC) CreateReview(ctx context.Context, request *pb.CreateReviewRequest) (*pb.CreateReviewResponse, error) {
+	response, err := s.reviewUsecase.CreateReview(ctx, &entity.Review{
+		ReviewId:        request.Review.ReviewId,
+		EstablishmentId: request.Review.EstablishmentId,
+		UserId:          request.Review.UserId,
+		Rating:          float64(request.Review.Rating),
+		Comment:         request.Review.Comment,
+		CreatedAt:       time.Now().Local(),
+		UpdatedAt:       time.Now().Local(),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.CreateReviewResponse{
+		Review: &pb.Review{
+			ReviewId:        response.ReviewId,
+			EstablishmentId: response.EstablishmentId,
+			UserId:          response.UserId,
+			Rating:          float32(response.Rating),
+			Comment:         response.Comment,
+			CreatedAt:       response.CreatedAt.String(),
+			UpdatedAt:       response.UpdatedAt.String(),
+		},
+	}, nil
+}
+
+func (s establishmentRPC) ListReviews(ctx context.Context, request *pb.ListReviewsRequest) (*pb.ListReviewsResponse, error) {
+	response, count, err := s.reviewUsecase.ListReviews(ctx, request.EstablishmentId)
+	if err != nil {
+		return nil, err
+	}
+
+	var reviews []*pb.Review
+
+	for _, respReview := range response {
+		review := pb.Review{
+			ReviewId:        respReview.ReviewId,
+			EstablishmentId: respReview.EstablishmentId,
+			UserId:          respReview.UserId,
+			Rating:          float32(respReview.Rating),
+			Comment:         respReview.Comment,
+			CreatedAt:       respReview.CreatedAt.String(),
+			UpdatedAt:       respReview.UpdatedAt.String(),
+		}
+
+		reviews = append(reviews, &review)
+	}
+
+	return &pb.ListReviewsResponse{
+		Reviews: reviews,
+		Count:   count,
+	}, nil
+}
+
+func (s establishmentRPC) DeleteReview(ctx context.Context, request *pb.DeleteReviewRequest) (*pb.DeleteReviewResponse, error) {
+	if err := s.reviewUsecase.DeleteReview(ctx, request.ReviewId); err != nil {
+		return &pb.DeleteReviewResponse{
+			Success: false,
+		}, err
+	}
+
+	return &pb.DeleteReviewResponse{
 		Success: true,
 	}, nil
 }

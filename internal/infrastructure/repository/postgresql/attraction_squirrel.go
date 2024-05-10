@@ -195,7 +195,7 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 }
 
 // get a list of attractions
-func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, error) {
+func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, uint64, error) {
 
 	var attractions []*entity.Attraction
 
@@ -207,12 +207,12 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
-		return nil, fmt.Errorf("failed to build SQL query for listing attractions: %v", err)
+		return nil, 0, err
 	}
 
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
-		return nil, fmt.Errorf("failed to execute SQL query for listing attractions: %v", err)
+		return nil, 0, err
 	}
 	defer rows.Close()
 
@@ -231,7 +231,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 			&attraction.CreatedAt,
 			&attraction.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to scan row while listing attractions: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch location information for the attraction
@@ -248,14 +248,14 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 			&attraction.Location.CreatedAt,
 			&attraction.Location.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to get location for attraction: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch images information for the attraction
 		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 		imageRows, err := p.db.Query(ctx, imagesQuery, attraction.AttractionId)
 		if err != nil {
-			return nil, fmt.Errorf("failed to get images for attraction: %v", err)
+			return nil, 0, err
 		}
 
 		// Iterate over the image rows and populate the Images slice for the attraction
@@ -269,19 +269,28 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 				&image.CreatedAt,
 				&image.UpdatedAt,
 			); err != nil {
-				return nil, fmt.Errorf("failed to scan image row: %v", err)
+				return nil, 0, err
 			}
 			attraction.Images = append(attraction.Images, &image)
 		}
 		if err := imageRows.Err(); err != nil {
-			return nil, fmt.Errorf("error encountered while iterating over image rows: %v", err)
+			return nil, 0, err
 		}
 
 		// Append the attraction to the attractions slice
 		attractions = append(attractions, &attraction)
 	}
 
-	return attractions, nil
+	var overall uint64
+
+	queryC := `SELECT COUNT(*) FROM attraction_table`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
+		return nil, 0, err
+	}
+
+
+	return attractions, overall, nil
 }
 
 // update an attraction
@@ -437,4 +446,92 @@ func (p attractionRepo) DeleteAttraction(ctx context.Context, attraction_id stri
 	}
 
 	return nil
+}
+
+func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error) {
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 LIMIT $4 OFFSET $5`
+
+	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	println()
+	println(err.Error())
+	println()
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var attractions []*entity.Attraction
+
+	for rows.Next() {
+		var location_for_getting_id entity.Location
+		if err := rows.Scan(location_for_getting_id); err != nil {
+			return nil, err
+		}
+
+		var attraction entity.Attraction
+
+		queryA := `SELECT attraction_id, owner_id, attraction_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM attraction_table WHERE attraction_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryA, location_for_getting_id.EstablishmentId).Scan(
+			&attraction.AttractionId,
+			&attraction.OwnerId,
+			&attraction.AttractionName,
+			&attraction.Description,
+			&attraction.Rating,
+			&attraction.ContactNumber,
+			&attraction.LicenceUrl,
+			&attraction.WebsiteUrl,
+			&attraction.CreatedAt,
+			&attraction.UpdatedAt,
+		); err != nil {
+			continue
+		}
+
+		var location entity.Location
+
+		queryLA := `SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM location_table WHERE establishment_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryLA, attraction.AttractionId).Scan(
+			&location.LocationId,
+			&location.EstablishmentId,
+			&location.Address,
+			&location.Latitude,
+			&location.Longitude,
+			&location.Country,
+			&location.City,
+			&location.StateProvince,
+			&location.CreatedAt,
+			&location.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+
+		attraction.Location = location
+
+		var images []*entity.Image
+
+		queryI := `SELECT image_id, establishment_id, image_url, created_at, updated_at FROM image_table WHERE establishment_id = $1`
+
+		rows, err = p.db.Query(ctx, queryI, attraction.AttractionId)
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
+
+		for rows.Next() {
+			var image entity.Image
+
+			if err := rows.Scan(image); err != nil {
+				return nil, err
+			}
+
+			images = append(images, &image)
+		}
+
+		attraction.Images = images
+
+		attractions = append(attractions, &attraction)
+	}
+
+	return attractions, nil
 }

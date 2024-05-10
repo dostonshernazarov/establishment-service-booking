@@ -198,7 +198,7 @@ func (p restaurantRepo) GetRestaurant(ctx context.Context, restaurant_id string)
 }
 
 // get a list of restaurants
-func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, error) {
+func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, uint64, error) {
 	var restaurants []*entity.Restaurant
 
 	queryBuilder := p.RestaurantSelectQueryPrefix()
@@ -209,12 +209,12 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
-		return nil, fmt.Errorf("failed to build SQL query for listing restaurants: %v", err)
+		return nil, 0, err
 	}
 
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
-		return nil, fmt.Errorf("failed to execute SQL query for listing restaurants: %v", err)
+		return nil, 0, err
 	}
 	defer rows.Close()
 
@@ -234,7 +234,7 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 			&restaurant.CreatedAt,
 			&restaurant.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to scan row while listing restaurants: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch location information for the restaurant
@@ -251,14 +251,14 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 			&restaurant.Location.CreatedAt,
 			&restaurant.Location.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to get location for restaurant: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch images information for the attraction
 		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 		imageRows, err := p.db.Query(ctx, imagesQuery, restaurant.RestaurantId)
 		if err != nil {
-			return nil, fmt.Errorf("failed to get images for restaurant: %v", err)
+			return nil, 0, err
 		}
 
 		// Iterate over the image rows and populate the Images slice for the restaurant
@@ -272,19 +272,27 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 				&image.CreatedAt,
 				&image.UpdatedAt,
 			); err != nil {
-				return nil, fmt.Errorf("failed to scan image row: %v", err)
+				return nil, 0, err
 			}
 			restaurant.Images = append(restaurant.Images, &image)
 		}
 		if err := imageRows.Err(); err != nil {
-			return nil, fmt.Errorf("error encountered while iterating over image rows: %v", err)
+			return nil, 0, err
 		}
 
 		// Append the attraction to the restaurants slice
 		restaurants = append(restaurants, &restaurant)
 	}
 
-	return restaurants, nil
+	var overall uint64
+
+	queryC := `SELECT COUNT(*) FROM restaurant_table`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
+		return nil, 0, err
+	}
+
+	return restaurants, overall, nil
 }
 
 // update a restaurant

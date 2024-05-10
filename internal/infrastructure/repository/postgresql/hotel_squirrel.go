@@ -195,7 +195,7 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 }
 
 // get a list of hotels
-func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, error) {
+func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, uint64, error) {
 	var hotels []*entity.Hotel
 
 	queryBuilder := p.HotelSelectQueryPrefix()
@@ -206,12 +206,12 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
-		return nil, fmt.Errorf("failed to build SQL query for listing hotels: %v", err)
+		return nil, 0, err
 	}
 
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
-		return nil, fmt.Errorf("failed to execute SQL query for listing hotels: %v", err)
+		return nil, 0, err
 	}
 	defer rows.Close()
 
@@ -230,7 +230,7 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 			&hotel.CreatedAt,
 			&hotel.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to scan row while listing hotels: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch location information for the hotel
@@ -252,14 +252,14 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 			&hotel.Location.CreatedAt,
 			&hotel.Location.UpdatedAt,
 		); err != nil {
-			return nil, fmt.Errorf("failed to get location for hotel: %v", err)
+			return nil, 0, err
 		}
 
 		// Fetch images information for the attraction
 		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
 		imageRows, err := p.db.Query(ctx, imagesQuery, hotel.HotelId)
 		if err != nil {
-			return nil, fmt.Errorf("failed to get images for hotel: %v", err)
+			return nil, 0, err
 		}
 
 		// Iterate over the image rows and populate the Images slice for the hotel
@@ -273,19 +273,27 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 				&image.CreatedAt,
 				&image.UpdatedAt,
 			); err != nil {
-				return nil, fmt.Errorf("failed to scan image row: %v", err)
+				return nil, 0, err
 			}
 			hotel.Images = append(hotel.Images, &image)
 		}
 		if err := imageRows.Err(); err != nil {
-			return nil, fmt.Errorf("error encountered while iterating over image rows: %v", err)
+			return nil, 0, err
 		}
 
 		// Append the attraction to the hotels slice
 		hotels = append(hotels, &hotel)
 	}
 
-	return hotels, nil
+	var overall uint64
+
+	queryC := `SELECT COUNT(*) FROM hotel_table`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
+		return nil, 0, err
+	}
+
+	return hotels, overall, nil
 }
 
 // update a hotel

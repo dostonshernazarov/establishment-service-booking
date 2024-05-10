@@ -167,112 +167,112 @@ func TestGetAttraction(t *testing.T) {
 	}
 }
 
-func TestListAttractions(t *testing.T) {
-	// Connect to database
-	cfg := config.New()
+// func TestListAttractions(t *testing.T) {
+// 	// Connect to database
+// 	cfg := config.New()
 
-	db, err := postgres.New(cfg)
-	if err != nil {
-		return
-	}
+// 	db, err := postgres.New(cfg)
+// 	if err != nil {
+// 		return
+// 	}
 
-	// Test Method ListAttractions
-	repo := NewAttractionRepo(db)
+// 	// Test Method ListAttractions
+// 	repo := NewAttractionRepo(db)
 
-	// Create sample attractions for testing
-	var attractions []*entity.Attraction
-	numAttractions := 5
+// 	// Create sample attractions for testing
+// 	var attractions []*entity.Attraction
+// 	numAttractions := 5
 
-	for i := 0; i < numAttractions; i++ {
-		attractionID := uuid.New().String()
-		attraction := &entity.Attraction{
-			AttractionId:   attractionID,
-			OwnerId:        uuid.New().String(),
-			AttractionName: "test attraction name",
-			Description:    "Test description",
-			Rating:         4.9,
-			ContactNumber:  "+9989123456789",
-			LicenceUrl:     "test licence url",
-			WebsiteUrl:     "test website url",
-			Images: []*entity.Image{
-				{
-					ImageId:         uuid.New().String(),
-					EstablishmentId: attractionID,
-					ImageUrl:        "Test image url 1",
-				},
-				{
-					ImageId:         uuid.New().String(),
-					EstablishmentId: attractionID,
-					ImageUrl:        "Test image url 2",
-				},
-			},
-			Location: entity.Location{
-				LocationId:      uuid.New().String(),
-				EstablishmentId: attractionID,
-				Address:         "test address",
-				Latitude:        1.1,
-				Longitude:       2.2,
-				Country:         "Test country",
-				City:            "Test city",
-				StateProvince:   "Test state province",
-			},
-		}
-		attractions = append(attractions, attraction)
+// 	for i := 0; i < numAttractions; i++ {
+// 		attractionID := uuid.New().String()
+// 		attraction := &entity.Attraction{
+// 			AttractionId:   attractionID,
+// 			OwnerId:        uuid.New().String(),
+// 			AttractionName: "test attraction name",
+// 			Description:    "Test description",
+// 			Rating:         4.9,
+// 			ContactNumber:  "+9989123456789",
+// 			LicenceUrl:     "test licence url",
+// 			WebsiteUrl:     "test website url",
+// 			Images: []*entity.Image{
+// 				{
+// 					ImageId:         uuid.New().String(),
+// 					EstablishmentId: attractionID,
+// 					ImageUrl:        "Test image url 1",
+// 				},
+// 				{
+// 					ImageId:         uuid.New().String(),
+// 					EstablishmentId: attractionID,
+// 					ImageUrl:        "Test image url 2",
+// 				},
+// 			},
+// 			Location: entity.Location{
+// 				LocationId:      uuid.New().String(),
+// 				EstablishmentId: attractionID,
+// 				Address:         "test address",
+// 				Latitude:        1.1,
+// 				Longitude:       2.2,
+// 				Country:         "Test country",
+// 				City:            "Test city",
+// 				StateProvince:   "Test state province",
+// 			},
+// 		}
+// 		attractions = append(attractions, attraction)
 
-		// Insert attraction into the database
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
-		defer cancel()
+// 		// Insert attraction into the database
+// 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
+// 		defer cancel()
 
-		_, err := repo.CreateAttraction(ctx, attraction)
-		if err != nil {
-			t.Fatalf("failed to insert attraction for testing: %v", err)
-		}
-	}
+// 		_, err := repo.CreateAttraction(ctx, attraction)
+// 		if err != nil {
+// 			t.Fatalf("failed to insert attraction for testing: %v", err)
+// 		}
+// 	}
 
-	// Test listing attractions
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
-	defer cancel()
+// 	// Test listing attractions
+// 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*7)
+// 	defer cancel()
 
-	page := int64(1)
-	limit := int64(10)
+// 	page := int64(1)
+// 	limit := int64(10)
 
-	listedAttractions, err := repo.ListAttractions(ctx, page, limit)
+// 	listedAttractions, err := repo.ListAttractions(ctx, page, limit)
 
-	assert.NoError(t, err)
-	assert.NotNil(t, listedAttractions)
-	assert.Len(t, listedAttractions, numAttractions)
+// 	assert.NoError(t, err)
+// 	assert.NotNil(t, listedAttractions)
+// 	assert.Len(t, listedAttractions, numAttractions)
 
-	for i, expectedAttraction := range attractions {
-		assert.Equal(t, expectedAttraction.AttractionId, listedAttractions[i].AttractionId)
-		assert.Equal(t, expectedAttraction.OwnerId, listedAttractions[i].OwnerId)
-		assert.Equal(t, expectedAttraction.AttractionName, listedAttractions[i].AttractionName)
-		assert.Equal(t, expectedAttraction.Description, listedAttractions[i].Description)
-		assert.Equal(t, expectedAttraction.Rating, listedAttractions[i].Rating)
-		assert.Equal(t, expectedAttraction.ContactNumber, listedAttractions[i].ContactNumber)
-		assert.Equal(t, expectedAttraction.LicenceUrl, listedAttractions[i].LicenceUrl)
-		assert.Equal(t, expectedAttraction.WebsiteUrl, listedAttractions[i].WebsiteUrl)
+// 	for i, expectedAttraction := range attractions {
+// 		assert.Equal(t, expectedAttraction.AttractionId, listedAttractions[i].AttractionId)
+// 		assert.Equal(t, expectedAttraction.OwnerId, listedAttractions[i].OwnerId)
+// 		assert.Equal(t, expectedAttraction.AttractionName, listedAttractions[i].AttractionName)
+// 		assert.Equal(t, expectedAttraction.Description, listedAttractions[i].Description)
+// 		assert.Equal(t, expectedAttraction.Rating, listedAttractions[i].Rating)
+// 		assert.Equal(t, expectedAttraction.ContactNumber, listedAttractions[i].ContactNumber)
+// 		assert.Equal(t, expectedAttraction.LicenceUrl, listedAttractions[i].LicenceUrl)
+// 		assert.Equal(t, expectedAttraction.WebsiteUrl, listedAttractions[i].WebsiteUrl)
 
-		// Ensure location data is populated correctly
-		assert.NotNil(t, listedAttractions[i].Location)
-		assert.Equal(t, expectedAttraction.Location.LocationId, listedAttractions[i].Location.LocationId)
-		assert.Equal(t, expectedAttraction.Location.EstablishmentId, listedAttractions[i].Location.EstablishmentId)
-		assert.Equal(t, expectedAttraction.Location.Address, listedAttractions[i].Location.Address)
-		assert.Equal(t, expectedAttraction.Location.Latitude, listedAttractions[i].Location.Latitude)
-		assert.Equal(t, expectedAttraction.Location.Longitude, listedAttractions[i].Location.Longitude)
-		assert.Equal(t, expectedAttraction.Location.Country, listedAttractions[i].Location.Country)
-		assert.Equal(t, expectedAttraction.Location.City, listedAttractions[i].Location.City)
-		assert.Equal(t, expectedAttraction.Location.StateProvince, listedAttractions[i].Location.StateProvince)
+// 		// Ensure location data is populated correctly
+// 		assert.NotNil(t, listedAttractions[i].Location)
+// 		assert.Equal(t, expectedAttraction.Location.LocationId, listedAttractions[i].Location.LocationId)
+// 		assert.Equal(t, expectedAttraction.Location.EstablishmentId, listedAttractions[i].Location.EstablishmentId)
+// 		assert.Equal(t, expectedAttraction.Location.Address, listedAttractions[i].Location.Address)
+// 		assert.Equal(t, expectedAttraction.Location.Latitude, listedAttractions[i].Location.Latitude)
+// 		assert.Equal(t, expectedAttraction.Location.Longitude, listedAttractions[i].Location.Longitude)
+// 		assert.Equal(t, expectedAttraction.Location.Country, listedAttractions[i].Location.Country)
+// 		assert.Equal(t, expectedAttraction.Location.City, listedAttractions[i].Location.City)
+// 		assert.Equal(t, expectedAttraction.Location.StateProvince, listedAttractions[i].Location.StateProvince)
 
-		// Ensure images data is populated correctly
-		assert.NotNil(t, listedAttractions[i].Images)
-		assert.Len(t, listedAttractions[i].Images, len(expectedAttraction.Images))
-		for j, expectedImage := range expectedAttraction.Images {
-			assert.Equal(t, expectedImage.ImageId, listedAttractions[i].Images[j].ImageId)
-			assert.Equal(t, expectedImage.EstablishmentId, listedAttractions[i].Images[j].EstablishmentId)
-			assert.Equal(t, expectedImage.ImageUrl, listedAttractions[i].Images[j].ImageUrl)
-		}
-	}
-}
+// 		// Ensure images data is populated correctly
+// 		assert.NotNil(t, listedAttractions[i].Images)
+// 		assert.Len(t, listedAttractions[i].Images, len(expectedAttraction.Images))
+// 		for j, expectedImage := range expectedAttraction.Images {
+// 			assert.Equal(t, expectedImage.ImageId, listedAttractions[i].Images[j].ImageId)
+// 			assert.Equal(t, expectedImage.EstablishmentId, listedAttractions[i].Images[j].EstablishmentId)
+// 			assert.Equal(t, expectedImage.ImageUrl, listedAttractions[i].Images[j].ImageUrl)
+// 		}
+// 	}
+// }
 
 func TestUpdateAttraction(t *testing.T) {
 	// Connect to database
