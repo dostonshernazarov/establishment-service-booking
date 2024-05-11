@@ -3640,3 +3640,349 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-05-10T20:47:05.994+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
 2024-05-10T20:47:15.418+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T20:47:15+05:00", "grpc.request.deadline": "2024-05-10T20:48:15+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListReviews", "peer.address": "127.0.0.1:56500", "grpc.code": "OK", "grpc.time_ms": 1.133}
 2024-05-10T20:55:56.395+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:16:47.202+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:26:50.063+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:26:50+05:00", "grpc.request.deadline": "2024-05-10T21:27:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 6.463}
+2024-05-10T21:27:24.448+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:24+05:00", "grpc.request.deadline": "2024-05-10T21:28:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.138}
+2024-05-10T21:27:27.642+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:27+05:00", "grpc.request.deadline": "2024-05-10T21:28:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 8.455}
+2024-05-10T21:27:27.791+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:27+05:00", "grpc.request.deadline": "2024-05-10T21:28:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.387}
+2024-05-10T21:27:27.952+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:27+05:00", "grpc.request.deadline": "2024-05-10T21:28:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.239}
+2024-05-10T21:27:28.111+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.253}
+2024-05-10T21:27:28.278+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 2.957}
+2024-05-10T21:27:28.422+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.108}
+2024-05-10T21:27:28.605+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.301}
+2024-05-10T21:27:28.735+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.083}
+2024-05-10T21:27:28.912+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:28+05:00", "grpc.request.deadline": "2024-05-10T21:28:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.445}
+2024-05-10T21:27:29.077+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.304}
+2024-05-10T21:27:29.234+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.137}
+2024-05-10T21:27:29.382+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.107}
+2024-05-10T21:27:29.535+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 2.999}
+2024-05-10T21:27:29.733+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.023}
+2024-05-10T21:27:29.902+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:29+05:00", "grpc.request.deadline": "2024-05-10T21:28:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 2.812}
+2024-05-10T21:27:30.089+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:30+05:00", "grpc.request.deadline": "2024-05-10T21:28:30+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 3.248}
+2024-05-10T21:27:43.443+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:27:43+05:00", "grpc.request.deadline": "2024-05-10T21:28:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:52550", "grpc.code": "OK", "grpc.time_ms": 13.261}
+2024-05-10T21:27:59.864+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:28:42.090+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:30:00.946+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:30:00+05:00", "grpc.request.deadline": "2024-05-10T21:31:00+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:46916", "error": "rpc error: code = Internal desc = runtime error: invalid memory address or nil pointer dereference", "grpc.code": "Internal", "grpc.time_ms": 1.024}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:34:32.766+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:35:59.700+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:36:05.073+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:36:05+05:00", "grpc.request.deadline": "2024-05-10T21:37:05+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:58208", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.136}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:37:23.581+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:37:25.200+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:37:27.626+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:37:27+05:00", "grpc.request.deadline": "2024-05-10T21:38:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:54278", "error": "rpc error: code = Internal desc = runtime error: invalid memory address or nil pointer dereference", "grpc.code": "Internal", "grpc.time_ms": 1.021}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:40:34.104+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:40:39.890+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:40:42.522+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:40:42+05:00", "grpc.request.deadline": "2024-05-10T21:41:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:39198", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.407}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:41:42.200+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:41:44.662+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:41:48.263+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:41:48+05:00", "grpc.request.deadline": "2024-05-10T21:42:48+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:33724", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.422}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:42:13.169+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:42:14.335+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:42:16.617+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:42:16+05:00", "grpc.request.deadline": "2024-05-10T21:43:16+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:34672", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.297}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:42:40.459+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:42:42.882+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:42:45.285+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:42:45+05:00", "grpc.request.deadline": "2024-05-10T21:43:45+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:44234", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.048}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:43:07.960+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:43:09.726+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:43:12.047+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:43:12+05:00", "grpc.request.deadline": "2024-05-10T21:44:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:53076", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.14}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:43:17.602+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:43:33.961+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:43:35.840+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:43:35+05:00", "grpc.request.deadline": "2024-05-10T21:44:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:48846", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.063}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:43:54.252+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:44:07.376+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:44:09.751+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:44:09+05:00", "grpc.request.deadline": "2024-05-10T21:45:09+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:50032", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into entity.Location", "grpc.code": "Internal", "grpc.time_ms": 1.078}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:44:18.181+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:45:59.685+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:46:02.044+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-10T21:46:02+05:00", "grpc.request.deadline": "2024-05-10T21:47:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:58544", "error": "rpc error: code = Internal desc = failed to fetch attractions: can't scan into dest[0]: cannot assign &{[225 111 120 244 177 168 76 134 179 82 92 19 123 151 74 63] 2} into string", "grpc.code": "Internal", "grpc.time_ms": 1.021}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/user/projects/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/user/projects/src/Booking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_ListAttractionsByLocation_Handler
+	/home/user/projects/src/Booking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:3365
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/user/projects/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-10T21:50:07.003+0500	INFO	app/main.go:36	User service stops !
+2024-05-10T21:55:11.749+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-10T21:55:18.622+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-10T21:55:18+05:00", "grpc.request.deadline": "2024-05-10T21:56:18+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:39674", "grpc.code": "OK", "grpc.time_ms": 6.411}
+2024-05-10T21:56:00.378+0500	INFO	app/main.go:36	User service stops !
+2024-05-11T13:32:56.375+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-11T13:34:29.584+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:29+05:00", "grpc.request.deadline": "2024-05-11T13:35:29+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 13.491}
+2024-05-11T13:34:37.449+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:37+05:00", "grpc.request.deadline": "2024-05-11T13:35:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 6.866}
+2024-05-11T13:34:38.155+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:38+05:00", "grpc.request.deadline": "2024-05-11T13:35:38+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.106}
+2024-05-11T13:34:38.822+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:38+05:00", "grpc.request.deadline": "2024-05-11T13:35:38+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 2.592}
+2024-05-11T13:34:39.021+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 16.912}
+2024-05-11T13:34:39.181+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.831}
+2024-05-11T13:34:39.342+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.02}
+2024-05-11T13:34:39.499+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.812}
+2024-05-11T13:34:39.662+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.841}
+2024-05-11T13:34:39.820+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 2.482}
+2024-05-11T13:34:39.989+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:39+05:00", "grpc.request.deadline": "2024-05-11T13:35:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 2.543}
+2024-05-11T13:34:40.160+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.9}
+2024-05-11T13:34:40.320+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.208}
+2024-05-11T13:34:40.482+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 5.457}
+2024-05-11T13:34:40.667+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.173}
+2024-05-11T13:34:40.814+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 5.471}
+2024-05-11T13:34:40.996+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:40+05:00", "grpc.request.deadline": "2024-05-11T13:35:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.456}
+2024-05-11T13:34:41.159+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:41+05:00", "grpc.request.deadline": "2024-05-11T13:35:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.762}
+2024-05-11T13:34:41.327+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:41+05:00", "grpc.request.deadline": "2024-05-11T13:35:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.649}
+2024-05-11T13:34:41.499+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:41+05:00", "grpc.request.deadline": "2024-05-11T13:35:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.637}
+2024-05-11T13:34:41.680+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:41+05:00", "grpc.request.deadline": "2024-05-11T13:35:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 2.417}
+2024-05-11T13:34:41.848+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:41+05:00", "grpc.request.deadline": "2024-05-11T13:35:41+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.657}
+2024-05-11T13:34:42.027+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.319}
+2024-05-11T13:34:42.184+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.727}
+2024-05-11T13:34:42.357+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.785}
+2024-05-11T13:34:42.519+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.713}
+2024-05-11T13:34:42.703+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.789}
+2024-05-11T13:34:42.883+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:42+05:00", "grpc.request.deadline": "2024-05-11T13:35:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.773}
+2024-05-11T13:34:43.045+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:43+05:00", "grpc.request.deadline": "2024-05-11T13:35:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.899}
+2024-05-11T13:34:43.203+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:43+05:00", "grpc.request.deadline": "2024-05-11T13:35:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.132}
+2024-05-11T13:34:43.353+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:43+05:00", "grpc.request.deadline": "2024-05-11T13:35:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 4.26}
+2024-05-11T13:34:43.541+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:34:43+05:00", "grpc.request.deadline": "2024-05-11T13:35:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "CreateAttraction", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 3.938}
+2024-05-11T13:35:02.763+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:35:02+05:00", "grpc.request.deadline": "2024-05-11T13:36:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:41684", "grpc.code": "OK", "grpc.time_ms": 17.787}
+2024-05-11T13:44:05.574+0500	INFO	app/main.go:36	User service stops !
+2024-05-11T13:44:07.295+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-11T13:44:09.882+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:44:09+05:00", "grpc.request.deadline": "2024-05-11T13:45:09+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:47488", "grpc.code": "OK", "grpc.time_ms": 5.852}
+2024-05-11T13:44:43.511+0500	INFO	app/main.go:36	User service stops !
+2024-05-11T13:44:45.486+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-11T13:44:47.893+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:44:47+05:00", "grpc.request.deadline": "2024-05-11T13:45:47+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:57508", "grpc.code": "OK", "grpc.time_ms": 5.711}
+2024-05-11T13:45:41.834+0500	INFO	app/main.go:36	User service stops !
+2024-05-11T13:45:43.881+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-11T13:45:46.732+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:45:46+05:00", "grpc.request.deadline": "2024-05-11T13:46:46+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:52554", "grpc.code": "OK", "grpc.time_ms": 11.802}
+2024-05-11T13:46:48.052+0500	INFO	app/main.go:36	User service stops !
+2024-05-11T13:46:50.604+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50024"}
+2024-05-11T13:46:52.469+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-11T13:46:52+05:00", "grpc.request.deadline": "2024-05-11T13:47:52+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractionsByLocation", "peer.address": "127.0.0.1:40006", "grpc.code": "OK", "grpc.time_ms": 6.781}
+2024-05-11T13:50:42.976+0500	INFO	app/main.go:36	User service stops !

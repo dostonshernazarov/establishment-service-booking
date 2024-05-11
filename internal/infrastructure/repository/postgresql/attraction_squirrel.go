@@ -289,7 +289,6 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 		return nil, 0, err
 	}
 
-
 	return attractions, overall, nil
 }
 
@@ -452,9 +451,6 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 LIMIT $4 OFFSET $5`
 
 	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
-	println()
-	println(err.Error())
-	println()
 	if err != nil {
 		return nil, err
 	}
@@ -463,8 +459,8 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 	var attractions []*entity.Attraction
 
 	for rows.Next() {
-		var location_for_getting_id entity.Location
-		if err := rows.Scan(location_for_getting_id); err != nil {
+		var establishment_id string
+		if err := rows.Scan(&establishment_id); err != nil {
 			return nil, err
 		}
 
@@ -472,7 +468,7 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 
 		queryA := `SELECT attraction_id, owner_id, attraction_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM attraction_table WHERE attraction_id = $1`
 
-		if err := p.db.QueryRow(ctx, queryA, location_for_getting_id.EstablishmentId).Scan(
+		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
 			&attraction.AttractionId,
 			&attraction.OwnerId,
 			&attraction.AttractionName,
@@ -521,7 +517,13 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 		for rows.Next() {
 			var image entity.Image
 
-			if err := rows.Scan(image); err != nil {
+			if err := rows.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
 				return nil, err
 			}
 
