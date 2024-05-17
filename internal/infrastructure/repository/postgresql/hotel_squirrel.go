@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"fmt"
@@ -11,11 +12,11 @@ import (
 )
 
 const (
-	hotelTableName = "hotel_table" //table for storing general info of hotel
-	// locationTableName        = "location_table"   // table for storing location info
-	// imageTableName           = "image_table"      // table for storing multiple images of establishment
-	// restaurantServiceName    = "restaurantService"
-	// restaurantSpanRepoPrefix = "attractionRepo"
+	hotelTableName = "hotel_table"
+	// locationTableName        = "location_table"
+	// imageTableName           = "image_table"
+	hotelServiceName    = "hotelService"
+	hotelSpanRepoPrefix = "hotelRepo"
 )
 
 type hotelRepo struct {
@@ -48,6 +49,9 @@ func (p *hotelRepo) HotelSelectQueryPrefix() squirrel.SelectBuilder {
 // create a new hotel
 func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error) {
 
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"Create")
+	defer span.End()
+
 	// insert location info to location_table
 	dataL := map[string]interface{}{
 		"location_id":      hotel.Location.LocationId,
@@ -58,6 +62,7 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 		"country":          hotel.Location.Country,
 		"city":             hotel.Location.City,
 		"state_province":   hotel.Location.StateProvince,
+		"category":         hotel.Location.Category,
 		"created_at":       hotel.Location.CreatedAt,
 		"updated_at":       hotel.Location.UpdatedAt,
 	}
@@ -78,6 +83,7 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 			"image_id":         image.ImageId,
 			"establishment_id": image.EstablishmentId,
 			"image_url":        image.ImageUrl,
+			"category":         image.Category,
 			"created_at":       image.CreatedAt,
 			"updated_at":       image.UpdatedAt,
 		}
@@ -121,6 +127,10 @@ func (p hotelRepo) CreateHotel(ctx context.Context, hotel *entity.Hotel) (*entit
 
 // get a restaurant
 func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel, error) {
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"Get")
+	defer span.End()
+
 	var hotel entity.Hotel
 
 	// Build the query to select attraction details
@@ -196,6 +206,10 @@ func (p hotelRepo) GetHotel(ctx context.Context, hotel_id string) (*entity.Hotel
 
 // get a list of hotels
 func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*entity.Hotel, uint64, error) {
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"List")
+	defer span.End()
+
 	var hotels []*entity.Hotel
 
 	queryBuilder := p.HotelSelectQueryPrefix()
@@ -298,6 +312,9 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 
 // update a hotel
 func (p hotelRepo) UpdateHotel(ctx context.Context, request *entity.Hotel) (*entity.Hotel, error) {
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"Update")
+	defer span.End()
 
 	clauses := map[string]interface{}{
 		"hotel_name":     request.HotelName,
@@ -428,6 +445,10 @@ func (p hotelRepo) UpdateHotel(ctx context.Context, request *entity.Hotel) (*ent
 
 // delete a hotel softly
 func (p hotelRepo) DeleteHotel(ctx context.Context, hotel_id string) error {
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"Delete")
+	defer span.End()
+
 	// Build the SQL query
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
 		Set("deleted_at", time.Now().Local()).
@@ -449,4 +470,108 @@ func (p hotelRepo) DeleteHotel(ctx context.Context, hotel_id string) error {
 	}
 
 	return nil
+}
+
+func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Hotel, int64, error) {
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"ListL")
+	defer span.End()
+
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'hotel' LIMIT $4 OFFSET $5`
+	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer rows.Close()
+
+	var hotels []*entity.Hotel
+
+	for rows.Next() {
+
+		var establishment_id string
+
+		if err := rows.Scan(&establishment_id); err != nil {
+			return nil, 0, err
+		}
+
+		var hotel entity.Hotel
+
+		queryA := `SELECT hotel_id, owner_id, hotel_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM hotel_table WHERE hotel_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
+			&hotel.HotelId,
+			&hotel.OwnerId,
+			&hotel.HotelName,
+			&hotel.Description,
+			&hotel.Rating,
+			&hotel.ContactNumber,
+			&hotel.LicenceUrl,
+			&hotel.WebsiteUrl,
+			&hotel.CreatedAt,
+			&hotel.UpdatedAt,
+		); err != nil {
+			continue
+		}
+
+		var location entity.Location
+
+		queryLA := `SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM location_table WHERE establishment_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryLA, hotel.HotelId).Scan(
+			&location.LocationId,
+			&location.EstablishmentId,
+			&location.Address,
+			&location.Latitude,
+			&location.Longitude,
+			&location.Country,
+			&location.City,
+			&location.StateProvince,
+			&location.CreatedAt,
+			&location.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		hotel.Location = location
+
+		queryI := `SELECT image_id, establishment_id, image_url, created_at, updated_at FROM image_table WHERE establishment_id = $1`
+
+		rowsI, err := p.db.Query(ctx, queryI, hotel.HotelId)
+		if err != nil {
+			return nil, 0, err
+		}
+		defer rowsI.Close()
+
+		var images []*entity.Image
+
+		for rowsI.Next() {
+			var image entity.Image
+
+			if err := rowsI.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
+				return nil, 0, err
+			}
+
+			images = append(images, &image)
+		}
+
+		hotel.Images = images
+
+		hotels = append(hotels, &hotel)
+	}
+
+	var count int64
+
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'hotel'`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+		return hotels, 0, err
+	}
+
+	return hotels, count, nil
 }

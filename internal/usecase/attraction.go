@@ -3,14 +3,15 @@ package usecase
 import (
 	"Booking/establishment-service-booking/internal/entity"
 	"Booking/establishment-service-booking/internal/infrastructure/repository"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"context"
 	"time"
 )
 
-// const (
-// 	serviceNameuser = "userService"
-// 	spanNameuser    = "userUsecase"
-// )
+const (
+	attractionServiceName = "attractionService"
+	spanNameAttraction    = "attractionUsecase"
+)
 
 type Attraction interface {
 	CreateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error)
@@ -18,7 +19,7 @@ type Attraction interface {
 	ListAttractions(ctx context.Context, page, limit int64) ([]*entity.Attraction, uint64, error)
 	UpdateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error)
 	DeleteAttraction(ctx context.Context, attraction_id string) error
-	ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error)
+	ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, int64, error)
 }
 
 type AttractionService struct {
@@ -38,7 +39,8 @@ func (a AttractionService) CreateAttraction(ctx context.Context, attracation *en
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
-	a.beforeRequest(nil, &attracation.CreatedAt, &attracation.UpdatedAt, nil)
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"Create")
+	defer span.End()
 
 	return a.repo.CreateAttraction(ctx, attracation)
 }
@@ -47,12 +49,18 @@ func (a AttractionService) GetAttraction(ctx context.Context, attraction_id stri
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"Get")
+	defer span.End()
+
 	return a.repo.GetAttraction(ctx, attraction_id)
 }
 
 func (a AttractionService) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, uint64, error) {
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"List")
+	defer span.End()
 
 	return a.repo.ListAttractions(ctx, offset, limit)
 }
@@ -61,11 +69,8 @@ func (a AttractionService) UpdateAttraction(ctx context.Context, attracation *en
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
-	// println("\n\nerror\n", attracation.AttractionName)
-
-	a.beforeRequest(nil, &attracation.CreatedAt, &attracation.UpdatedAt, nil)
-
-	println("\n\nerror\n",  attracation.AttractionId)
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"Update")
+	defer span.End()
 
 	return a.repo.UpdateAttraction(ctx, attracation)
 }
@@ -74,12 +79,18 @@ func (a AttractionService) DeleteAttraction(ctx context.Context, attraction_id s
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
 
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"Delete")
+	defer span.End()
+
 	return a.repo.DeleteAttraction(ctx, attraction_id)
 }
 
-func (a AttractionService) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error) {
+func (a AttractionService) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, int64, error) {
 	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
 	defer cancel()
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"ListL")
+	defer span.End()
 
 	return a.repo.ListAttractionsByLocation(ctx, offset, limit, country, city, state_province)
 }

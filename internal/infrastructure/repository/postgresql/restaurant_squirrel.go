@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"fmt"
@@ -11,11 +12,11 @@ import (
 )
 
 const (
-	restaurantTableName = "restaurant_table" //table for storing general info of attraction
-	// locationTableName        = "location_table"   // table for storing location info
-	// imageTableName           = "image_table"      // table for storing multiple images of establishment
-	// restaurantServiceName    = "restaurantService"
-	// restaurantSpanRepoPrefix = "attractionRepo"
+	restaurantTableName = "restaurant_table"
+	// locationTableName        = "location_table"
+	// imageTableName           = "image_table"
+	restaurantServiceName    = "restaurantService"
+	restaurantSpanRepoPrefix = "attractionRepo"
 )
 
 type restaurantRepo struct {
@@ -49,6 +50,9 @@ func (p *restaurantRepo) RestaurantSelectQueryPrefix() squirrel.SelectBuilder {
 // create a new restaurant
 func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error) {
 
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"Create")
+	defer span.End()
+
 	// insert location info to location_table
 	dataL := map[string]interface{}{
 		"location_id":      restaurant.Location.LocationId,
@@ -59,6 +63,7 @@ func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity
 		"country":          restaurant.Location.Country,
 		"city":             restaurant.Location.City,
 		"state_province":   restaurant.Location.StateProvince,
+		"category":         restaurant.Location.Category,
 		"created_at":       restaurant.Location.CreatedAt,
 		"updated_at":       restaurant.Location.UpdatedAt,
 	}
@@ -79,6 +84,7 @@ func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity
 			"image_id":         image.ImageId,
 			"establishment_id": image.EstablishmentId,
 			"image_url":        image.ImageUrl,
+			"category":         image.Category,
 			"created_at":       image.CreatedAt,
 			"updated_at":       image.UpdatedAt,
 		}
@@ -123,6 +129,10 @@ func (p restaurantRepo) CreateRestaurant(ctx context.Context, restaurant *entity
 
 // get a restaurant
 func (p restaurantRepo) GetRestaurant(ctx context.Context, restaurant_id string) (*entity.Restaurant, error) {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"Get")
+	defer span.End()
+
 	var restaurant entity.Restaurant
 
 	// Build the query to select attraction details
@@ -199,6 +209,10 @@ func (p restaurantRepo) GetRestaurant(ctx context.Context, restaurant_id string)
 
 // get a list of restaurants
 func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, uint64, error) {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"List")
+	defer span.End()
+
 	var restaurants []*entity.Restaurant
 
 	queryBuilder := p.RestaurantSelectQueryPrefix()
@@ -297,6 +311,9 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 
 // update a restaurant
 func (p restaurantRepo) UpdateRestaurant(ctx context.Context, request *entity.Restaurant) (*entity.Restaurant, error) {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"Update")
+	defer span.End()
 
 	clauses := map[string]interface{}{
 		"restaurant_name": request.RestaurantName,
@@ -429,6 +446,10 @@ func (p restaurantRepo) UpdateRestaurant(ctx context.Context, request *entity.Re
 
 // delete a restaurant softly
 func (p restaurantRepo) DeleteRestaurant(ctx context.Context, restaurant_id string) error {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"Delete")
+	defer span.End()
+
 	// Build the SQL query
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
 		Set("deleted_at", time.Now().Local()).
@@ -450,4 +471,109 @@ func (p restaurantRepo) DeleteRestaurant(ctx context.Context, restaurant_id stri
 	}
 
 	return nil
+}
+
+func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Restaurant, int64, error) {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"ListL")
+	defer span.End()
+
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'restaurant' LIMIT $4 OFFSET $5`
+	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer rows.Close()
+
+	var restaurants []*entity.Restaurant
+
+	for rows.Next() {
+
+		var establishment_id string
+
+		if err := rows.Scan(&establishment_id); err != nil {
+			return nil, 0, err
+		}
+		
+		var restaurant entity.Restaurant
+
+		queryA := `SELECT restaurant_id, owner_id, restaurant_name, description, rating, opening_hours, contact_number, licence_url, website_url, created_at, updated_at FROM restaurant_table WHERE restaurant_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
+			&restaurant.RestaurantId,
+			&restaurant.OwnerId,
+			&restaurant.RestaurantName,
+			&restaurant.Description,
+			&restaurant.Rating,
+			&restaurant.OpeningHours,
+			&restaurant.ContactNumber,
+			&restaurant.LicenceUrl,
+			&restaurant.WebsiteUrl,
+			&restaurant.CreatedAt,
+			&restaurant.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		var location entity.Location
+
+		queryLA := `SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM location_table WHERE establishment_id = $1`
+
+		if err := p.db.QueryRow(ctx, queryLA, restaurant.RestaurantId).Scan(
+			&location.LocationId,
+			&location.EstablishmentId,
+			&location.Address,
+			&location.Latitude,
+			&location.Longitude,
+			&location.Country,
+			&location.City,
+			&location.StateProvince,
+			&location.CreatedAt,
+			&location.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		restaurant.Location = location
+
+		queryI := `SELECT image_id, establishment_id, image_url, created_at, updated_at FROM image_table WHERE establishment_id = $1`
+
+		rowsI, err := p.db.Query(ctx, queryI, restaurant.RestaurantId)
+		if err != nil {
+			return nil, 0, err
+		}
+		defer rowsI.Close()
+
+		var images []*entity.Image
+
+		for rowsI.Next() {
+			var image entity.Image
+
+			if err := rowsI.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
+				return nil, 0, err
+			}
+
+			images = append(images, &image)
+		}
+
+		restaurant.Images = images
+
+		restaurants = append(restaurants, &restaurant)
+	}
+
+	var count int64
+
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'restaurant'`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+		return restaurants, 0, err
+	}
+
+	return restaurants, count, nil
 }

@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"time"
@@ -11,6 +12,8 @@ import (
 
 const (
 	favouriteTableName = "favourite_table"
+	favouriteServiceName    = "favouriteService"
+	favouriteSpanRepoPrefix = "favouriteRepo"
 )
 
 type favouriteRepo struct {
@@ -36,6 +39,9 @@ func (f *favouriteRepo) FavouriteSelectQueryPrefix() squirrel.SelectBuilder {
 }
 
 func (f *favouriteRepo) AddToFavourites(ctx context.Context, favourite *entity.Favourite) (*entity.Favourite, error) {
+
+	ctx, span := otlp.Start(ctx, favouriteServiceName, favouriteSpanRepoPrefix+"Create")
+	defer span.End()
 
 	data := map[string]interface{}{
 		"favourite_id":     favourite.FavouriteId,
@@ -78,6 +84,10 @@ func (f *favouriteRepo) AddToFavourites(ctx context.Context, favourite *entity.F
 }
 
 func (f *favouriteRepo) RemoveFromFavourites(ctx context.Context, favourite_id string) error {
+	
+	ctx, span := otlp.Start(ctx, favouriteServiceName, favouriteSpanRepoPrefix+"Delete")
+	defer span.End()
+	
 	// Build the SQL query
 	sqlStr, args, err := f.db.Sq.Builder.Update(f.favouriteTableName).
 		Set("deleted_at", time.Now().Local()).
@@ -102,6 +112,10 @@ func (f *favouriteRepo) RemoveFromFavourites(ctx context.Context, favourite_id s
 }
 
 func (f *favouriteRepo) ListFavouritesByUserId(ctx context.Context, user_id string) ([]*entity.Favourite, error) {
+	
+	ctx, span := otlp.Start(ctx, favouriteServiceName, favouriteSpanRepoPrefix+"List")
+	defer span.End()
+	
 	var favourites []*entity.Favourite
 
 	queryBuilder := f.FavouriteSelectQueryPrefix()

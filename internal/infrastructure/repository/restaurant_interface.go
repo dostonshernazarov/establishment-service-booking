@@ -11,4 +11,5 @@ type Restaurant interface {
 	ListRestaurants(ctx context.Context, offset, limit int64) ([]*entity.Restaurant, uint64, error)
 	UpdateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error)
 	DeleteRestaurant(ctx context.Context, restaurant_id string) error
+	ListRestaurantsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Restaurant, int64, error)
 }
