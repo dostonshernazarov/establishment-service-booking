@@ -569,9 +569,9 @@ func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, l
 
 	var count int64
 
-	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'restaurant'`
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'restaurant' and country = $1 and city = $2 and state_province = $3`
 
-	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count, country, city, state_province); err != nil {
 		return restaurants, 0, err
 	}
 

@@ -567,9 +567,9 @@ func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint6
 
 	var count int64
 
-	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'hotel'`
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'hotel' and country = $1 and city = $2 and state_province = $3`
 
-	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count, country, city, state_province); err != nil {
 		return hotels, 0, err
 	}
 
