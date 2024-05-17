@@ -7,6 +7,7 @@ CREATE TABLE "location_table"(
     "country" VARCHAR(255) DEFAULT '',
     "city" VARCHAR(255) DEFAULT '',
     "state_province" VARCHAR(255) DEFAULT '',
+    "category"  VARCHAR(255) DEFAULT '',
     "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
     "deleted_at" TIMESTAMP(0)
@@ -50,6 +51,7 @@ CREATE TABLE "image_table"(
     "image_id" UUID PRIMARY KEY NOT NULL,
     "establishment_id" UUID NOT NULL,
     "image_url" VARCHAR(255) DEFAULT '',
+    "category"  VARCHAR(255) DEFAULT '',
     "created_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
     "deleted_at" TIMESTAMP(0)

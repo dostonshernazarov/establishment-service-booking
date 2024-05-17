@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"fmt"
@@ -48,6 +49,9 @@ func (p *attractionRepo) AttractionSelectQueryPrefix() squirrel.SelectBuilder {
 // create a new attraction
 func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity.Attraction) (*entity.Attraction, error) {
 
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"Create")
+	defer span.End()
+
 	// insert location info to location_table
 	dataL := map[string]interface{}{
 		"location_id":      attraction.Location.LocationId,
@@ -58,6 +62,7 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 		"country":          attraction.Location.Country,
 		"city":             attraction.Location.City,
 		"state_province":   attraction.Location.StateProvince,
+		"category":         attraction.Location.Category,
 		"created_at":       attraction.Location.CreatedAt,
 		"updated_at":       attraction.Location.UpdatedAt,
 	}
@@ -78,6 +83,7 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 			"image_id":         image.ImageId,
 			"establishment_id": attraction.AttractionId,
 			"image_url":        image.ImageUrl,
+			"category":         image.Category,
 			"created_at":       image.CreatedAt,
 			"updated_at":       image.UpdatedAt,
 		}
@@ -121,6 +127,10 @@ func (p attractionRepo) CreateAttraction(ctx context.Context, attraction *entity
 
 // get an attraction
 func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string) (*entity.Attraction, error) {
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"Get")
+	defer span.End()
+
 	var attraction entity.Attraction
 
 	// Build the query to select attraction details
@@ -196,6 +206,9 @@ func (p attractionRepo) GetAttraction(ctx context.Context, attraction_id string)
 
 // get a list of attractions
 func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64) ([]*entity.Attraction, uint64, error) {
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"List")
+	defer span.End()
 
 	var attractions []*entity.Attraction
 
@@ -289,12 +302,14 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 		return nil, 0, err
 	}
 
-
 	return attractions, overall, nil
 }
 
 // update an attraction
 func (p attractionRepo) UpdateAttraction(ctx context.Context, request *entity.Attraction) (*entity.Attraction, error) {
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"Update")
+	defer span.End()
 
 	clauses := map[string]interface{}{
 		"attraction_name": request.AttractionName,
@@ -425,6 +440,10 @@ func (p attractionRepo) UpdateAttraction(ctx context.Context, request *entity.At
 
 // delete an attraction softly
 func (p attractionRepo) DeleteAttraction(ctx context.Context, attraction_id string) error {
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"Delete")
+	defer span.End()
+
 	// Build the SQL query
 	sqlStr, args, err := p.db.Sq.Builder.Update(p.tableName).
 		Set("deleted_at", time.Now().Local()).
@@ -448,31 +467,33 @@ func (p attractionRepo) DeleteAttraction(ctx context.Context, attraction_id stri
 	return nil
 }
 
-func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, error) {
-	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 LIMIT $4 OFFSET $5`
+func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, int64, error) {
 
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"ListL")
+	defer span.End()
+
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'attraction' LIMIT $4 OFFSET $5`
 	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
-	println()
-	println(err.Error())
-	println()
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 	defer rows.Close()
 
 	var attractions []*entity.Attraction
 
 	for rows.Next() {
-		var location_for_getting_id entity.Location
-		if err := rows.Scan(location_for_getting_id); err != nil {
-			return nil, err
+
+		var establishment_id string
+
+		if err := rows.Scan(&establishment_id); err != nil {
+			return nil, 0, err
 		}
 
 		var attraction entity.Attraction
 
 		queryA := `SELECT attraction_id, owner_id, attraction_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM attraction_table WHERE attraction_id = $1`
 
-		if err := p.db.QueryRow(ctx, queryA, location_for_getting_id.EstablishmentId).Scan(
+		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
 			&attraction.AttractionId,
 			&attraction.OwnerId,
 			&attraction.AttractionName,
@@ -484,7 +505,7 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 			&attraction.CreatedAt,
 			&attraction.UpdatedAt,
 		); err != nil {
-			continue
+			return nil, 0, err
 		}
 
 		var location entity.Location
@@ -503,26 +524,32 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 			&location.CreatedAt,
 			&location.UpdatedAt,
 		); err != nil {
-			return nil, err
+			return nil, 0, err
 		}
 
 		attraction.Location = location
 
-		var images []*entity.Image
-
 		queryI := `SELECT image_id, establishment_id, image_url, created_at, updated_at FROM image_table WHERE establishment_id = $1`
 
-		rows, err = p.db.Query(ctx, queryI, attraction.AttractionId)
+		rowsI, err := p.db.Query(ctx, queryI, attraction.AttractionId)
 		if err != nil {
-			return nil, err
+			return nil, 0, err
 		}
-		defer rows.Close()
+		defer rowsI.Close()
 
-		for rows.Next() {
+		var images []*entity.Image
+
+		for rowsI.Next() {
 			var image entity.Image
 
-			if err := rows.Scan(image); err != nil {
-				return nil, err
+			if err := rowsI.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
+				return nil, 0, err
 			}
 
 			images = append(images, &image)
@@ -533,5 +560,13 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 		attractions = append(attractions, &attraction)
 	}
 
-	return attractions, nil
+	var count int64
+
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'attraction'`
+
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+		return attractions, 0, err
+	}
+
+	return attractions, count, nil
 }

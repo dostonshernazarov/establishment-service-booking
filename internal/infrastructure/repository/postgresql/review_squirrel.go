@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"Booking/establishment-service-booking/internal/entity"
+	"Booking/establishment-service-booking/internal/pkg/otlp"
 	"Booking/establishment-service-booking/internal/pkg/postgres"
 	"context"
 	"time"
@@ -11,6 +12,8 @@ import (
 
 const (
 	reviewTableName = "review_table"
+	reviewServiceName = "reviewService"
+	reviewSpanRepoPrefix = "reviewRepo"
 )
 
 type reviewRepo struct {
@@ -39,6 +42,9 @@ func (r *reviewRepo) ReviewSelectQueryPrefix() squirrel.SelectBuilder {
 
 // create a new review to an establishment
 func (r *reviewRepo) CreateReview(ctx context.Context, review *entity.Review) (*entity.Review, error) {
+
+	ctx, span := otlp.Start(ctx, reviewServiceName, reviewSpanRepoPrefix+"Create")
+	defer span.End()
 
 	data := map[string]interface{}{
 		"review_id":        review.ReviewId,
@@ -86,6 +92,10 @@ func (r *reviewRepo) CreateReview(ctx context.Context, review *entity.Review) (*
 
 // list reviews by establishment_id
 func (r *reviewRepo) ListReviews(ctx context.Context, establishment_id string) ([]*entity.Review, uint64, error) {
+	
+	ctx, span := otlp.Start(ctx, reviewServiceName, reviewSpanRepoPrefix+"List")
+	defer span.End()
+	
 	var reviews []*entity.Review
 
 	queryBuilder := r.ReviewSelectQueryPrefix()
@@ -134,6 +144,10 @@ func (r *reviewRepo) ListReviews(ctx context.Context, establishment_id string) (
 
 // delete review softly by review_id
 func (r *reviewRepo) DeleteReview(ctx context.Context, review_id string) error {
+	
+	ctx, span := otlp.Start(ctx, reviewServiceName, reviewSpanRepoPrefix+"Delete")
+	defer span.End()
+	
 	// Build the SQL query
 	sqlStr, args, err := r.db.Sq.Builder.Update(r.reviewTableName).
 		Set("deleted_at", time.Now().Local()).

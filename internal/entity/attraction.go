@@ -22,6 +22,7 @@ type Image struct {
 	ImageId         string
 	EstablishmentId string
 	ImageUrl        string
+	Category        string
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 	DeletedAt       time.Time
@@ -36,6 +37,7 @@ type Location struct {
 	Country         string
 	City            string
 	StateProvince   string
+	Category        string
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 	DeletedAt       time.Time

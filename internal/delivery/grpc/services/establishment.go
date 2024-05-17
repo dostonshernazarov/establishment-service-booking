@@ -55,6 +55,7 @@ func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.A
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.Category = i.Category
 		image.CreatedAt = time.Now().Local()
 		image.UpdatedAt = time.Now().Local()
 
@@ -79,6 +80,7 @@ func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.A
 			Country:         attraction.Location.Country,
 			City:            attraction.Location.City,
 			StateProvince:   attraction.Location.StateProvince,
+			Category:        attraction.Location.Category,
 			CreatedAt:       time.Now().Local(),
 			UpdatedAt:       time.Now().Local(),
 		},
@@ -130,9 +132,14 @@ func (s establishmentRPC) CreateAttraction(ctx context.Context, attraction *pb.A
 	}, nil
 }
 
-func (s establishmentRPC) GetAttraction(ctx context.Context, req *pb.GetAttractionRequest) (*pb.GetAttractionResponse, error) {
-	attraction, err := s.attracationUsecase.GetAttraction(ctx, req.AttractionId)
+func (s establishmentRPC) GetAttraction(ctx context.Context, request *pb.GetAttractionRequest) (*pb.GetAttractionResponse, error) {
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "Get")
+	span.SetAttributes(
+		attribute.Key("attraction_id").String(request.AttractionId),
+	)
+	defer span.End()
 
+	attraction, err := s.attracationUsecase.GetAttraction(ctx, request.AttractionId)
 	if err != nil {
 		return nil, err
 	}
@@ -180,8 +187,14 @@ func (s establishmentRPC) GetAttraction(ctx context.Context, req *pb.GetAttracti
 	}, nil
 }
 
-func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttractionsRequest) (*pb.ListAttractionsResponse, error) {
-	attractions, overall, err := s.attracationUsecase.ListAttractions(ctx, req.Offset, req.Limit)
+func (s establishmentRPC) ListAttractions(ctx context.Context, request *pb.ListAttractionsRequest) (*pb.ListAttractionsResponse, error) {
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("limit").Int64(request.Limit),
+	)
+	defer span.End()
+
+	attractions, overall, err := s.attracationUsecase.ListAttractions(ctx, request.Offset, request.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
 	}
@@ -233,6 +246,13 @@ func (s establishmentRPC) ListAttractions(ctx context.Context, req *pb.ListAttra
 }
 
 func (s establishmentRPC) UpdateAttraction(ctx context.Context, request *pb.UpdateAttractionRequest) (*pb.UpdateAttractionResponse, error) {
+
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "Update")
+	span.SetAttributes(
+		attribute.Key("attraction_id").String(request.Attraction.AttractionId),
+	)
+	defer span.End()
+
 	// var imagesS []*entity.Image
 
 	// for _, i := range request.Attraction.Images {
@@ -312,8 +332,14 @@ func (s establishmentRPC) UpdateAttraction(ctx context.Context, request *pb.Upda
 	}, nil
 }
 
-func (s establishmentRPC) DeleteAttraction(ctx context.Context, req *pb.DeleteAttractionRequest) (*pb.DeleteAttractionResponse, error) {
-	if err := s.attracationUsecase.DeleteAttraction(ctx, req.AttractionId); err != nil {
+func (s establishmentRPC) DeleteAttraction(ctx context.Context, request *pb.DeleteAttractionRequest) (*pb.DeleteAttractionResponse, error) {
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("attraction_id").String(request.AttractionId),
+	)
+	defer span.End()
+
+	if err := s.attracationUsecase.DeleteAttraction(ctx, request.AttractionId); err != nil {
 		return &pb.DeleteAttractionResponse{
 			Success: false,
 		}, err
@@ -325,7 +351,13 @@ func (s establishmentRPC) DeleteAttraction(ctx context.Context, req *pb.DeleteAt
 }
 
 func (s establishmentRPC) ListAttractionsByLocation(ctx context.Context, request *pb.ListAttractionsByLocationRequest) (*pb.ListAttractionsByLocationResponse, error) {
-	attractions, err := s.attracationUsecase.ListAttractionsByLocation(ctx, request.Offset, request.Limit, request.Country, request.City, request.StateProvince)
+	ctx, span := otlp.Start(ctx, "attraction_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("state_province").String(request.StateProvince),
+	)
+	defer span.End()
+
+	attractions, count, err := s.attracationUsecase.ListAttractionsByLocation(ctx, request.Offset, request.Limit, request.Country, request.City, request.StateProvince)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch attractions: %v", err)
 	}
@@ -372,11 +404,18 @@ func (s establishmentRPC) ListAttractionsByLocation(ctx context.Context, request
 
 	return &pb.ListAttractionsByLocationResponse{
 		Attractions: pbAttractions,
+		Count:       count,
 	}, nil
 }
 
 // RESTAURANT
 func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.Restaurant) (*pb.Restaurant, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("restaurant_id").String(restaurant.RestaurantId),
+	)
+	defer span.End()
+
 	var images []*entity.Image
 
 	for _, i := range restaurant.Images {
@@ -385,6 +424,7 @@ func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.R
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.Category = i.Category
 		image.CreatedAt = time.Now().Local()
 		image.UpdatedAt = time.Now().Local()
 
@@ -410,6 +450,7 @@ func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.R
 			Country:         restaurant.Location.Country,
 			City:            restaurant.Location.City,
 			StateProvince:   restaurant.Location.StateProvince,
+			Category:        restaurant.Location.Category,
 			CreatedAt:       time.Now().Local(),
 			UpdatedAt:       time.Now().Local(),
 		},
@@ -463,6 +504,12 @@ func (s establishmentRPC) CreateRestaurant(ctx context.Context, restaurant *pb.R
 }
 
 func (s establishmentRPC) GetRestaurant(ctx context.Context, request *pb.GetRestaurantRequest) (*pb.GetRestaurantResponse, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "Get")
+	span.SetAttributes(
+		attribute.Key("restaurant_id").String(request.RestaurantId),
+	)
+	defer span.End()
+
 	restaurant, err := s.restaurantUsecase.GetRestaurant(ctx, request.RestaurantId)
 	if err != nil {
 		return nil, err
@@ -512,8 +559,14 @@ func (s establishmentRPC) GetRestaurant(ctx context.Context, request *pb.GetRest
 	}, nil
 }
 
-func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListRestaurantsRequest) (*pb.ListRestaurantsResponse, error) {
-	restaurants, overall, err := s.restaurantUsecase.ListRestaurants(ctx, req.Offset, req.Limit)
+func (s establishmentRPC) ListRestaurants(ctx context.Context, request *pb.ListRestaurantsRequest) (*pb.ListRestaurantsResponse, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("limit").Int64(request.Limit),
+	)
+	defer span.End()
+
+	restaurants, overall, err := s.restaurantUsecase.ListRestaurants(ctx, request.Offset, request.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch restaurants: %v", err)
 	}
@@ -566,6 +619,12 @@ func (s establishmentRPC) ListRestaurants(ctx context.Context, req *pb.ListResta
 }
 
 func (s establishmentRPC) UpdateRestaurant(ctx context.Context, request *pb.UpdateRestaurantRequest) (*pb.UpdateRestaurantResponse, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "Update")
+	span.SetAttributes(
+		attribute.Key("restaurant_id").String(request.Restaurant.RestaurantId),
+	)
+	defer span.End()
+
 	var imagesS []*entity.Image
 
 	for _, i := range request.Restaurant.Images {
@@ -647,8 +706,14 @@ func (s establishmentRPC) UpdateRestaurant(ctx context.Context, request *pb.Upda
 	}, nil
 }
 
-func (s establishmentRPC) DeleteRestaurant(ctx context.Context, req *pb.DeleteRestaurantRequest) (*pb.DeleteRestaurantResponse, error) {
-	if err := s.restaurantUsecase.DeleteRestaurant(ctx, req.RestaurantId); err != nil {
+func (s establishmentRPC) DeleteRestaurant(ctx context.Context, request *pb.DeleteRestaurantRequest) (*pb.DeleteRestaurantResponse, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("restaurant_id").String(request.RestaurantId),
+	)
+	defer span.End()
+
+	if err := s.restaurantUsecase.DeleteRestaurant(ctx, request.RestaurantId); err != nil {
 		return &pb.DeleteRestaurantResponse{
 			Success: false,
 		}, err
@@ -659,8 +724,73 @@ func (s establishmentRPC) DeleteRestaurant(ctx context.Context, req *pb.DeleteRe
 	}, nil
 }
 
+func (s establishmentRPC) ListRestaurantsByLocation(ctx context.Context, request *pb.ListRestaurantsByLocationRequest) (*pb.ListRestaurantsByLocationResponse, error) {
+	ctx, span := otlp.Start(ctx, "restaurant_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("state_province").String(request.StateProvince),
+	)
+	defer span.End()
+
+	restaurants, count, err := s.restaurantUsecase.ListRestaurantsByLocation(ctx, request.Offset, request.Limit, request.Country, request.City, request.StateProvince)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to fetch restaurants: %v", err)
+	}
+
+	var pbRestaurants []*pb.Restaurant
+	for _, restaurant := range restaurants {
+		var images []*pb.Image
+		for _, i := range restaurant.Images {
+			images = append(images, &pb.Image{
+				ImageId:         i.ImageId,
+				EstablishmentId: i.EstablishmentId,
+				ImageUrl:        i.ImageUrl,
+				CreatedAt:       i.CreatedAt.String(),
+				UpdatedAt:       i.UpdatedAt.String(),
+			})
+		}
+
+		pbRestaurants = append(pbRestaurants, &pb.Restaurant{
+			RestaurantId:   restaurant.RestaurantId,
+			OwnerId:        restaurant.OwnerId,
+			RestaurantName: restaurant.RestaurantName,
+			Description:    restaurant.Description,
+			Rating:         restaurant.Rating,
+			OpeningHours:   restaurant.OpeningHours,
+			ContactNumber:  restaurant.ContactNumber,
+			LicenceUrl:     restaurant.LicenceUrl,
+			WebsiteUrl:     restaurant.WebsiteUrl,
+			Images:         images,
+			Location: &pb.Location{
+				LocationId:      restaurant.Location.LocationId,
+				EstablishmentId: restaurant.Location.EstablishmentId,
+				Address:         restaurant.Location.Address,
+				Latitude:        restaurant.Location.Latitude,
+				Longitude:       restaurant.Location.Longitude,
+				Country:         restaurant.Location.Country,
+				City:            restaurant.Location.City,
+				StateProvince:   restaurant.Location.StateProvince,
+				CreatedAt:       restaurant.CreatedAt.String(),
+				UpdatedAt:       restaurant.UpdatedAt.String(),
+			},
+			CreatedAt: restaurant.CreatedAt.String(),
+			UpdatedAt: restaurant.UpdatedAt.String(),
+		})
+	}
+
+	return &pb.ListRestaurantsByLocationResponse{
+		Restaurants: pbRestaurants,
+		Count:       count,
+	}, nil
+}
+
 // HOTEL
 func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb.Hotel, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("hotel_id").String(hotel.HotelId),
+	)
+	defer span.End()
+
 	var images []*entity.Image
 
 	for _, i := range hotel.Images {
@@ -669,6 +799,7 @@ func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb
 		image.ImageId = i.ImageId
 		image.EstablishmentId = i.EstablishmentId
 		image.ImageUrl = i.ImageUrl
+		image.Category = i.Category
 		image.CreatedAt = time.Now().Local()
 		image.UpdatedAt = time.Now().Local()
 
@@ -693,6 +824,7 @@ func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb
 			Country:         hotel.Location.Country,
 			City:            hotel.Location.City,
 			StateProvince:   hotel.Location.StateProvince,
+			Category:        hotel.Location.Category,
 			CreatedAt:       time.Now().Local(),
 			UpdatedAt:       time.Now().Local(),
 		},
@@ -745,6 +877,12 @@ func (s establishmentRPC) CreateHotel(ctx context.Context, hotel *pb.Hotel) (*pb
 }
 
 func (s establishmentRPC) GetHotel(ctx context.Context, request *pb.GetHotelRequest) (*pb.GetHotelResponse, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "Get")
+	span.SetAttributes(
+		attribute.Key("hotel_id").String(request.HotelId),
+	)
+	defer span.End()
+
 	hotel, err := s.hotelUsecase.GetHotel(ctx, request.HotelId)
 	if err != nil {
 		return nil, err
@@ -793,8 +931,14 @@ func (s establishmentRPC) GetHotel(ctx context.Context, request *pb.GetHotelRequ
 	}, nil
 }
 
-func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequest) (*pb.ListHotelsResponse, error) {
-	hotels, overall, err := s.hotelUsecase.ListHotels(ctx, req.Offset, req.Limit)
+func (s establishmentRPC) ListHotels(ctx context.Context, request *pb.ListHotelsRequest) (*pb.ListHotelsResponse, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("limit").Int64(request.Limit),
+	)
+	defer span.End()
+
+	hotels, overall, err := s.hotelUsecase.ListHotels(ctx, request.Offset, request.Limit)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to fetch hotels: %v", err)
 	}
@@ -847,6 +991,12 @@ func (s establishmentRPC) ListHotels(ctx context.Context, req *pb.ListHotelsRequ
 }
 
 func (s establishmentRPC) UpdateHotel(ctx context.Context, request *pb.UpdateHotelRequest) (*pb.UpdateHotelResponse, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "Update")
+	span.SetAttributes(
+		attribute.Key("hotel_id").String(request.Hotel.HotelId),
+	)
+	defer span.End()
+
 	// var imagesS []*entity.Image
 
 	// for _, i := range request.Hotel.Images {
@@ -928,6 +1078,12 @@ func (s establishmentRPC) UpdateHotel(ctx context.Context, request *pb.UpdateHot
 }
 
 func (s establishmentRPC) DeleteHotel(ctx context.Context, request *pb.DeleteHotelRequest) (*pb.DeleteHotelResponse, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("hotel_id").String(request.HotelId),
+	)
+	defer span.End()
+
 	if err := s.hotelUsecase.DeleteHotel(ctx, request.HotelId); err != nil {
 		return &pb.DeleteHotelResponse{
 			Success: false,
@@ -939,8 +1095,72 @@ func (s establishmentRPC) DeleteHotel(ctx context.Context, request *pb.DeleteHot
 	}, nil
 }
 
+func (s establishmentRPC) ListHotelsByLocation(ctx context.Context, request *pb.ListHotelsByLocationRequest) (*pb.ListHotelsByLocationResponse, error) {
+	ctx, span := otlp.Start(ctx, "hotel_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("state_province").String(request.StateProvince),
+	)
+	defer span.End()
+
+	hotels, count, err := s.hotelUsecase.ListHotelsByLocation(ctx, request.Offset, request.Limit, request.Country, request.City, request.StateProvince)
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "failed to fetch hotels: %v", err)
+	}
+
+	var pbHotels []*pb.Hotel
+	for _, hotel := range hotels {
+		var images []*pb.Image
+		for _, i := range hotel.Images {
+			images = append(images, &pb.Image{
+				ImageId:         i.ImageId,
+				EstablishmentId: i.EstablishmentId,
+				ImageUrl:        i.ImageUrl,
+				CreatedAt:       i.CreatedAt.String(),
+				UpdatedAt:       i.UpdatedAt.String(),
+			})
+		}
+
+		pbHotels = append(pbHotels, &pb.Hotel{
+			HotelId:       hotel.HotelId,
+			OwnerId:       hotel.OwnerId,
+			HotelName:     hotel.HotelName,
+			Description:   hotel.Description,
+			Rating:        hotel.Rating,
+			ContactNumber: hotel.ContactNumber,
+			LicenceUrl:    hotel.LicenceUrl,
+			WebsiteUrl:    hotel.WebsiteUrl,
+			Images:        images,
+			Location: &pb.Location{
+				LocationId:      hotel.Location.LocationId,
+				EstablishmentId: hotel.Location.EstablishmentId,
+				Address:         hotel.Location.Address,
+				Latitude:        hotel.Location.Latitude,
+				Longitude:       hotel.Location.Longitude,
+				Country:         hotel.Location.Country,
+				City:            hotel.Location.City,
+				StateProvince:   hotel.Location.StateProvince,
+				CreatedAt:       hotel.CreatedAt.String(),
+				UpdatedAt:       hotel.UpdatedAt.String(),
+			},
+			CreatedAt: hotel.CreatedAt.String(),
+			UpdatedAt: hotel.UpdatedAt.String(),
+		})
+	}
+
+	return &pb.ListHotelsByLocationResponse{
+		Hotels: pbHotels,
+		Count:  count,
+	}, nil
+}
+
 // FAVOURITE
 func (s establishmentRPC) AddToFavourites(ctx context.Context, request *pb.AddToFavouritesRequest) (*pb.AddToFavouritesResponse, error) {
+	ctx, span := otlp.Start(ctx, "favourite_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("favourite_id").String(request.Favourite.FavouriteId),
+	)
+	defer span.End()
+
 	response, err := s.favouriteUsecase.AddToFavourites(ctx, &entity.Favourite{
 		FavouriteId:     request.Favourite.FavouriteId,
 		EstablishmentId: request.Favourite.EstablishmentId,
@@ -964,6 +1184,12 @@ func (s establishmentRPC) AddToFavourites(ctx context.Context, request *pb.AddTo
 }
 
 func (s establishmentRPC) RemoveFromFavourites(ctx context.Context, request *pb.RemoveFromFavouritesRequest) (*pb.RemoveFromFavouritesResponse, error) {
+	ctx, span := otlp.Start(ctx, "favourite_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("favourite_id").String(request.FavouriteId),
+	)
+	defer span.End()
+
 	if err := s.favouriteUsecase.RemoveFromFavourites(ctx, request.FavouriteId); err != nil {
 		return &pb.RemoveFromFavouritesResponse{
 			Success: false,
@@ -976,6 +1202,12 @@ func (s establishmentRPC) RemoveFromFavourites(ctx context.Context, request *pb.
 }
 
 func (s establishmentRPC) ListFavouritesByUserId(ctx context.Context, request *pb.ListFavouritesByUserIdRequest) (*pb.ListFavouritesByUserIdResponse, error) {
+	ctx, span := otlp.Start(ctx, "favourite_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("user_id").String(request.UserId),
+	)
+	defer span.End()
+
 	response, err := s.favouriteUsecase.ListFavouritesByUserId(ctx, request.UserId)
 	if err != nil {
 		return nil, err
@@ -1002,6 +1234,12 @@ func (s establishmentRPC) ListFavouritesByUserId(ctx context.Context, request *p
 
 // REVIEW
 func (s establishmentRPC) CreateReview(ctx context.Context, request *pb.CreateReviewRequest) (*pb.CreateReviewResponse, error) {
+	ctx, span := otlp.Start(ctx, "review_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("review_id").String(request.Review.ReviewId),
+	)
+	defer span.End()
+
 	response, err := s.reviewUsecase.CreateReview(ctx, &entity.Review{
 		ReviewId:        request.Review.ReviewId,
 		EstablishmentId: request.Review.EstablishmentId,
@@ -1029,6 +1267,12 @@ func (s establishmentRPC) CreateReview(ctx context.Context, request *pb.CreateRe
 }
 
 func (s establishmentRPC) ListReviews(ctx context.Context, request *pb.ListReviewsRequest) (*pb.ListReviewsResponse, error) {
+	ctx, span := otlp.Start(ctx, "review_grpc_delivery", "List")
+	span.SetAttributes(
+		attribute.Key("establishment_id").String(request.EstablishmentId),
+	)
+	defer span.End()
+
 	response, count, err := s.reviewUsecase.ListReviews(ctx, request.EstablishmentId)
 	if err != nil {
 		return nil, err
@@ -1057,6 +1301,12 @@ func (s establishmentRPC) ListReviews(ctx context.Context, request *pb.ListRevie
 }
 
 func (s establishmentRPC) DeleteReview(ctx context.Context, request *pb.DeleteReviewRequest) (*pb.DeleteReviewResponse, error) {
+	ctx, span := otlp.Start(ctx, "review_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("review_id").String(request.ReviewId),
+	)
+	defer span.End()
+
 	if err := s.reviewUsecase.DeleteReview(ctx, request.ReviewId); err != nil {
 		return &pb.DeleteReviewResponse{
 			Success: false,
