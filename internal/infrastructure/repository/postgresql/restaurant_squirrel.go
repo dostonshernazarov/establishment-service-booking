@@ -473,6 +473,7 @@ func (p restaurantRepo) DeleteRestaurant(ctx context.Context, restaurant_id stri
 	return nil
 }
 
+// list restaurants by location
 func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Restaurant, int64, error) {
 
 	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"ListL")
