@@ -6,5 +6,5 @@ import (
 )
 
 type Image interface{
-	CreateImage(ctx context.Context, image *entity.Image) (error)
+	CreateImage(ctx context.Context, image *entity.Image) error
 }

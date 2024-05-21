@@ -212,6 +212,7 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 
 	var hotels []*entity.Hotel
 
+	// println("\n check")
 	queryBuilder := p.HotelSelectQueryPrefix()
 
 	if limit != 0 {
@@ -223,11 +224,14 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 		return nil, 0, err
 	}
 
+	// println("\n", query, "\n")
 	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, 0, err
 	}
 	defer rows.Close()
+
+	println("\n not error \n")
 
 	// Iterate over the rows to fetch each hotel's details
 	for rows.Next() {
@@ -301,7 +305,7 @@ func (p hotelRepo) ListHotels(ctx context.Context, offset, limit int64) ([]*enti
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM hotel_table`
+	queryC := `SELECT COUNT(*) FROM hotel_table WHERE deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -477,15 +481,21 @@ func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint6
 	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'hotel' LIMIT $4 OFFSET $5`
-	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	countryStr := "%"+country+"%"
+	cityStr := "%"+city+"%"
+	stateStr := "%"+state_province+"%"
+
+	// println("\n\n chech \n")
+	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'hotel' and deleted_at IS NULL LIMIT $1 OFFSET $2", countryStr, cityStr, stateStr)
+	rows, err := p.db.Query(ctx, queryL, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
 	defer rows.Close()
 
 	var hotels []*entity.Hotel
-
+	// println("\n\n chech 2 \n")
+	
 	for rows.Next() {
 
 		var establishment_id string
@@ -494,6 +504,7 @@ func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint6
 			return nil, 0, err
 		}
 
+		// println("\n\n chech 2 \n")
 		var hotel entity.Hotel
 
 		queryA := `SELECT hotel_id, owner_id, hotel_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM hotel_table WHERE hotel_id = $1`
@@ -510,7 +521,7 @@ func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint6
 			&hotel.CreatedAt,
 			&hotel.UpdatedAt,
 		); err != nil {
-			continue
+			return nil, 0, err
 		}
 
 		var location entity.Location
@@ -567,9 +578,9 @@ func (p hotelRepo) ListHotelsByLocation(ctx context.Context, offset, limit uint6
 
 	var count int64
 
-	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'hotel' and country = $1 and city = $2 and state_province = $3`
+	queryC := fmt.Sprintf("SELECT COUNT(*) establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'hotel' and deleted_at IS NULL", countryStr, cityStr, stateStr)
 
-	if err := p.db.QueryRow(ctx, queryC).Scan(&count, country, city, state_province); err != nil {
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
 		return hotels, 0, err
 	}
 

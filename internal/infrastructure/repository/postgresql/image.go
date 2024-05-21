@@ -21,7 +21,7 @@ func NewImageRepo(db *postgres.PostgresDB) *imageRepo {
 	}
 }
 
-func (p hotelRepo) CreateImage(ctx context.Context, image *entity.Image) (error) {
+func (p imageRepo) CreateImage(ctx context.Context, image *entity.Image) (error) {
 	ctx, span := otlp.Start(ctx, hotelServiceName, hotelSpanRepoPrefix+"CreateImage")
 	defer span.End()
 

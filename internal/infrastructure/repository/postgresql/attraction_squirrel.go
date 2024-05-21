@@ -296,7 +296,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM attraction_table`
+	queryC := `SELECT COUNT(*) FROM attraction_table WHERE deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -472,8 +472,12 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'attraction' LIMIT $4 OFFSET $5`
-	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	countryStr := "%"+country+"%"
+	cityStr := "%"+city+"%"
+	stateStr := "%"+state_province+"%"
+
+	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'attraction' and deleted_at IS NULL LIMIT $1 OFFSET $2",countryStr, cityStr, stateStr)
+	rows, err := p.db.Query(ctx, queryL, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -493,6 +497,7 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 
 		queryA := `SELECT attraction_id, owner_id, attraction_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM attraction_table WHERE attraction_id = $1`
 
+		// println("\nnot error 1")
 		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
 			&attraction.AttractionId,
 			&attraction.OwnerId,
@@ -505,8 +510,11 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 			&attraction.CreatedAt,
 			&attraction.UpdatedAt,
 		); err != nil {
+			// println("\nerror")
 			return nil, 0, err
 		}
+		
+		// println("\nnot error")
 
 		var location entity.Location
 
@@ -562,7 +570,7 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 
 	var count int64
 
-	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'attraction'`
+	queryC := fmt.Sprintf("SELECT COUNT(*) establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'attraction' and deleted_at IS NULL",countryStr, cityStr, stateStr)
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
 		return attractions, 0, err

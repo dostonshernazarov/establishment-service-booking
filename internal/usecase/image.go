@@ -15,7 +15,7 @@ const (
 )
 
 type Image interface {
-	CreateImage(ctx context.Context, image *entity.Image) (error)
+	CreateImage(ctx context.Context, image *entity.Image) error
 }
 
 type ImageService struct {
@@ -31,12 +31,15 @@ func NewImageService(ctxTimeout time.Duration, repo repository.Image) ImageServi
 	}
 }
 
-func (h ImageService) CreateImage(ctx context.Context, image *entity.Image) (error) {
+func (h ImageService) CreateImage(ctx context.Context, image *entity.Image) error {
 	ctx, cancel := context.WithTimeout(ctx, h.ctxTimeout)
 	defer cancel()
 
 	ctx, span := otlp.Start(ctx, imageServiceName, spanNameImage+"Create")
 	defer span.End()
+
+	println("\n\n", image.ImageUrl, "\n\n")
+
 
 	return h.repo.CreateImage(ctx, image)
 }
