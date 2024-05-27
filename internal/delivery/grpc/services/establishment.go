@@ -22,10 +22,11 @@ type establishmentRPC struct {
 	hotelUsecase       usecase.Hotel
 	favouriteUsecase   usecase.Favourite
 	reviewUsecase      usecase.Review
+	imageUsecase       usecase.Image
 	brokerProducer     event.BrokerProducer
 }
 
-func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restaurantUsecase usecase.Restaurant, hotelUsecase usecase.Hotel, favouriteUsecase usecase.Favourite, reviewUsecase usecase.Review, brokerProducer event.BrokerProducer) pb.EstablishmentServiceServer {
+func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restaurantUsecase usecase.Restaurant, hotelUsecase usecase.Hotel, favouriteUsecase usecase.Favourite, reviewUsecase usecase.Review, imageUsecase usecase.Image ,brokerProducer event.BrokerProducer) pb.EstablishmentServiceServer {
 	return &establishmentRPC{
 		logger:             logger,
 		attracationUsecase: attracationUsecase,
@@ -33,6 +34,7 @@ func NewRPC(logger *zap.Logger, attracationUsecase usecase.Attraction, restauran
 		hotelUsecase:       hotelUsecase,
 		favouriteUsecase:   favouriteUsecase,
 		reviewUsecase:      reviewUsecase,
+		imageUsecase: imageUsecase,
 		brokerProducer:     brokerProducer,
 	}
 }
@@ -1315,5 +1317,36 @@ func (s establishmentRPC) DeleteReview(ctx context.Context, request *pb.DeleteRe
 
 	return &pb.DeleteReviewResponse{
 		Success: true,
+	}, nil
+}
+
+// MEDIA
+func (s establishmentRPC) CreateMedia(ctx context.Context, image *pb.Image) (*pb.CreateImageRes, error) {
+	ctx, span := otlp.Start(ctx, "media_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("establishment_id").String(image.EstablishmentId),
+	)
+	defer span.End()
+
+	// println("\n\n", image.ImageUrl, "\n\n")
+
+	err := s.imageUsecase.CreateImage(ctx, &entity.Image{
+		ImageId:         image.ImageId,
+		EstablishmentId: image.EstablishmentId,
+		ImageUrl:        image.ImageUrl,
+		Category:        image.Category,
+		CreatedAt:       time.Now().Local(),
+		UpdatedAt:       time.Now().Local(),
+		DeletedAt:       time.Now().Local(),
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	// println("\n\n", image.ImageUrl, "\n\n")
+
+	return &pb.CreateImageRes{
+		Result: "Image has been created",
 	}, nil
 }

@@ -300,7 +300,7 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM restaurant_table`
+	queryC := `SELECT COUNT(*) FROM restaurant_table WHERE deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -479,8 +479,12 @@ func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, l
 	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'restaurant' LIMIT $4 OFFSET $5`
-	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	countryStr := "%"+country+"%"
+	cityStr := "%"+city+"%"
+	stateStr := "%"+state_province+"%"
+
+	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'restaurant' and deleted_at IS NULL LIMIT $1 OFFSET $2", countryStr, cityStr, stateStr)
+	rows, err := p.db.Query(ctx, queryL, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -570,9 +574,9 @@ func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, l
 
 	var count int64
 
-	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'restaurant' and country = $1 and city = $2 and state_province = $3`
+	queryC := fmt.Sprintf("SELECT COUNT(*) establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'restaurant' and deleted_at IS NULL", countryStr, cityStr, stateStr)
 
-	if err := p.db.QueryRow(ctx, queryC).Scan(&count, country, city, state_province); err != nil {
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
 		return restaurants, 0, err
 	}
 
