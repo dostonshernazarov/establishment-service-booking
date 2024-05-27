@@ -296,7 +296,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM attraction_table WHERE deleted_at IS NULL`
+	queryC := `SELECT COUNT(*) FROM attraction_table`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -467,17 +467,14 @@ func (p attractionRepo) DeleteAttraction(ctx context.Context, attraction_id stri
 	return nil
 }
 
+// list attractions by location
 func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, int64, error) {
 
 	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	countryStr := "%"+country+"%"
-	cityStr := "%"+city+"%"
-	stateStr := "%"+state_province+"%"
-
-	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'attraction' and deleted_at IS NULL LIMIT $1 OFFSET $2",countryStr, cityStr, stateStr)
-	rows, err := p.db.Query(ctx, queryL, limit, offset)
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'attraction' LIMIT $4 OFFSET $5`
+	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -497,7 +494,6 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 
 		queryA := `SELECT attraction_id, owner_id, attraction_name, description, rating, contact_number, licence_url, website_url, created_at, updated_at FROM attraction_table WHERE attraction_id = $1`
 
-		// println("\nnot error 1")
 		if err := p.db.QueryRow(ctx, queryA, establishment_id).Scan(
 			&attraction.AttractionId,
 			&attraction.OwnerId,
@@ -510,11 +506,8 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 			&attraction.CreatedAt,
 			&attraction.UpdatedAt,
 		); err != nil {
-			// println("\nerror")
 			return nil, 0, err
 		}
-		
-		// println("\nnot error")
 
 		var location entity.Location
 
@@ -570,11 +563,110 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 
 	var count int64
 
-	queryC := fmt.Sprintf("SELECT COUNT(*) establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'attraction' and deleted_at IS NULL",countryStr, cityStr, stateStr)
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'attraction'`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
 		return attractions, 0, err
 	}
 
 	return attractions, count, nil
+}
+
+// find attractions by name
+func (p attractionRepo) FindAttractionsByName(ctx context.Context, name string) ([]*entity.Attraction, uint64, error) {
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"Find")
+	defer span.End()
+
+	var attractions []*entity.Attraction
+
+	queryBuilder := p.AttractionSelectQueryPrefix()
+
+	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("attraction_name LIKE ?", "%"+name+"%"))
+
+	query, args, err := queryBuilder.ToSql()
+	if err != nil {
+		return nil, 0, err
+	}
+
+	rows, err := p.db.Query(ctx, query, args...)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer rows.Close()
+
+	// Iterate over the rows to fetch each attraction's details
+	for rows.Next() {
+		var attraction entity.Attraction
+		if err := rows.Scan(
+			&attraction.AttractionId,
+			&attraction.AttractionName,
+			&attraction.OwnerId,
+			&attraction.Description,
+			&attraction.Rating,
+			&attraction.ContactNumber,
+			&attraction.LicenceUrl,
+			&attraction.WebsiteUrl,
+			&attraction.CreatedAt,
+			&attraction.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		// Fetch location information for the attraction
+		locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
+		if err := p.db.QueryRow(ctx, locationQuery, attraction.AttractionId).Scan(
+			&attraction.Location.LocationId,
+			&attraction.Location.EstablishmentId,
+			&attraction.Location.Address,
+			&attraction.Location.Latitude,
+			&attraction.Location.Longitude,
+			&attraction.Location.Country,
+			&attraction.Location.City,
+			&attraction.Location.StateProvince,
+			&attraction.Location.CreatedAt,
+			&attraction.Location.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		// Fetch images information for the attraction
+		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
+		imageRows, err := p.db.Query(ctx, imagesQuery, attraction.AttractionId)
+		if err != nil {
+			return nil, 0, err
+		}
+
+		// Iterate over the image rows and populate the Images slice for the attraction
+		defer imageRows.Close()
+		for imageRows.Next() {
+			var image entity.Image
+			if err := imageRows.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
+				return nil, 0, err
+			}
+			attraction.Images = append(attraction.Images, &image)
+		}
+		if err := imageRows.Err(); err != nil {
+			return nil, 0, err
+		}
+
+		// Append the attraction to the attractions slice
+		attractions = append(attractions, &attraction)
+	}
+
+	var overall uint64
+
+	queryC := `SELECT COUNT(*) FROM attraction_table WHERE attraction_name LIKE '%' || $1 || '%' and deleted_at IS NULL`
+
+	if err := p.db.QueryRow(ctx, queryC, name).Scan(&overall); err != nil {
+		return nil, 0, err
+	}
+
+	return attractions, overall, nil
 }

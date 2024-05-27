@@ -20,6 +20,7 @@ type Hotel interface {
 	UpdateHotel(ctx context.Context, hotel *entity.Hotel) (*entity.Hotel, error)
 	DeleteHotel(ctx context.Context, hotel_id string) error
 	ListHotelsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Hotel, int64, error)
+	FindHotelsByName(ctx context.Context, name string) ([]*entity.Hotel, uint64, error)
 }
 
 type HotelService struct {
@@ -93,4 +94,14 @@ func (h HotelService) ListHotelsByLocation(ctx context.Context, offset, limit ui
 	defer span.End()
 
 	return h.repo.ListHotelsByLocation(ctx, offset, limit, country, city, state_province)
+}
+
+func (h HotelService) FindHotelsByName(ctx context.Context, name string) ([]*entity.Hotel, uint64, error) {
+	ctx, cancel := context.WithTimeout(ctx, h.ctxTimeout)
+	defer cancel()
+
+	ctx, span := otlp.Start(ctx, hotelServiceName, spanNameHotel+"List")
+	defer span.End()
+
+	return h.repo.FindHotelsByName(ctx, name)
 }

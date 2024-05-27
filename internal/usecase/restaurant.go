@@ -20,6 +20,7 @@ type Restaurant interface {
 	UpdateRestaurant(ctx context.Context, restaurant *entity.Restaurant) (*entity.Restaurant, error)
 	DeleteRestaurant(ctx context.Context, restaurant_id string) error
 	ListRestaurantsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Restaurant, int64, error)
+	FindRestaurantsByName(ctx context.Context, name string) ([]*entity.Restaurant, uint64, error)
 }
 
 type RestaurantService struct {
@@ -95,4 +96,14 @@ func (r RestaurantService) ListRestaurantsByLocation(ctx context.Context, offset
 	defer span.End()
 
 	return r.repo.ListRestaurantsByLocation(ctx, offset, limit, country, city, state_province)
+}
+
+func (r RestaurantService) FindRestaurantsByName(ctx context.Context, name string) ([]*entity.Restaurant, uint64, error) {
+	ctx, cancel := context.WithTimeout(ctx, r.ctxTimeout)
+	defer cancel()
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, spanNameRestaurant+"List")
+	defer span.End()
+
+	return r.repo.FindRestaurantsByName(ctx, name)
 }

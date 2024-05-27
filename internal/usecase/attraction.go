@@ -20,6 +20,7 @@ type Attraction interface {
 	UpdateAttraction(ctx context.Context, attracation *entity.Attraction) (*entity.Attraction, error)
 	DeleteAttraction(ctx context.Context, attraction_id string) error
 	ListAttractionsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Attraction, int64, error)
+	FindAttractionsByName(ctx context.Context, name string) ([]*entity.Attraction, uint64, error)
 }
 
 type AttractionService struct {
@@ -93,4 +94,14 @@ func (a AttractionService) ListAttractionsByLocation(ctx context.Context, offset
 	defer span.End()
 
 	return a.repo.ListAttractionsByLocation(ctx, offset, limit, country, city, state_province)
+}
+
+func (a AttractionService) FindAttractionsByName(ctx context.Context, name string) ([]*entity.Attraction, uint64, error) {
+	ctx, cancel := context.WithTimeout(ctx, a.ctxTimeout)
+	defer cancel()
+
+	ctx, span := otlp.Start(ctx, attractionServiceName, spanNameAttraction+"ListL")
+	defer span.End()
+
+	return a.repo.FindAttractionsByName(ctx, name)
 }

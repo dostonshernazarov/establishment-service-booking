@@ -48,15 +48,15 @@ func New() *Config {
 	config.Context.Timeout = getEnv("CONTEXT_TIMEOUT", "30s")
 
 	// db configuration
-	config.DB.Host = getEnv("POSTGRES_HOST", "postgres")
+	config.DB.Host = getEnv("POSTGRES_HOST", "localhost")
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
-	config.DB.Password = getEnv("POSTGRES_PASSWORD", "doston")
+	config.DB.Password = getEnv("POSTGRES_PASSWORD", "123")
 	config.DB.SslMode = getEnv("POSTGRES_SSLMODE", "disable")
-	config.DB.Name = getEnv("POSTGRES_DATABASE", "touristandb")
+	config.DB.Name = getEnv("POSTGRES_DATABASE", "establishmentdb")
 
 	// otlp collector configuration
-	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "otel-collector")
+	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	// kafka configuration

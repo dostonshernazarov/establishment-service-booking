@@ -300,7 +300,7 @@ func (p restaurantRepo) ListRestaurants(ctx context.Context, offset, limit int64
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM restaurant_table WHERE deleted_at IS NULL`
+	queryC := `SELECT COUNT(*) FROM restaurant_table`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -479,12 +479,8 @@ func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, l
 	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	countryStr := "%"+country+"%"
-	cityStr := "%"+city+"%"
-	stateStr := "%"+state_province+"%"
-
-	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'restaurant' and deleted_at IS NULL LIMIT $1 OFFSET $2", countryStr, cityStr, stateStr)
-	rows, err := p.db.Query(ctx, queryL, limit, offset)
+	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'restaurant' LIMIT $4 OFFSET $5`
+	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -574,11 +570,111 @@ func (p restaurantRepo) ListRestaurantsByLocation(ctx context.Context, offset, l
 
 	var count int64
 
-	queryC := fmt.Sprintf("SELECT COUNT(*) establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'restaurant' and deleted_at IS NULL", countryStr, cityStr, stateStr)
+	queryC := `SELECT COUNT(*) establishment_id FROM location_table where category = 'restaurant' and country = $1 and city = $2 and state_province = $3`
 
-	if err := p.db.QueryRow(ctx, queryC).Scan(&count); err != nil {
+	if err := p.db.QueryRow(ctx, queryC).Scan(&count, country, city, state_province); err != nil {
 		return restaurants, 0, err
 	}
 
 	return restaurants, count, nil
+}
+
+// find restaurants by name
+func (p restaurantRepo) FindRestaurantsByName(ctx context.Context, name string) ([]*entity.Restaurant, uint64, error) {
+
+	ctx, span := otlp.Start(ctx, restaurantServiceName, restaurantSpanRepoPrefix+"Find")
+	defer span.End()
+
+	var restaurants []*entity.Restaurant
+
+	queryBuilder := p.RestaurantSelectQueryPrefix()
+
+	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(p.db.Sq.ILike("restaurant_name", name))
+
+	query, args, err := queryBuilder.ToSql()
+	if err != nil {
+		return nil, 0, err
+	}
+
+	rows, err := p.db.Query(ctx, query, args...)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer rows.Close()
+
+	// Iterate over the rows to fetch each restaurant's details
+	for rows.Next() {
+		var restaurant entity.Restaurant
+		if err := rows.Scan(
+			&restaurant.RestaurantId,
+			&restaurant.RestaurantName,
+			&restaurant.OwnerId,
+			&restaurant.Description,
+			&restaurant.Rating,
+			&restaurant.OpeningHours,
+			&restaurant.ContactNumber,
+			&restaurant.LicenceUrl,
+			&restaurant.WebsiteUrl,
+			&restaurant.CreatedAt,
+			&restaurant.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		// Fetch location information for the restaurant
+		locationQuery := fmt.Sprintf("SELECT location_id, establishment_id, address, latitude, longitude, country, city, state_province, created_at, updated_at FROM %s WHERE establishment_id = $1", locationTableName)
+		if err := p.db.QueryRow(ctx, locationQuery, restaurant.RestaurantId).Scan(
+			&restaurant.Location.LocationId,
+			&restaurant.Location.EstablishmentId,
+			&restaurant.Location.Address,
+			&restaurant.Location.Latitude,
+			&restaurant.Location.Longitude,
+			&restaurant.Location.Country,
+			&restaurant.Location.City,
+			&restaurant.Location.StateProvince,
+			&restaurant.Location.CreatedAt,
+			&restaurant.Location.UpdatedAt,
+		); err != nil {
+			return nil, 0, err
+		}
+
+		// Fetch images information for the restaurant
+		imagesQuery := fmt.Sprintf("SELECT image_id, establishment_id, image_url, created_at, updated_at FROM %s WHERE establishment_id = $1", imageTableName)
+		imageRows, err := p.db.Query(ctx, imagesQuery, restaurant.RestaurantId)
+		if err != nil {
+			return nil, 0, err
+		}
+
+		// Iterate over the image rows and populate the Images slice for the restaurant
+		defer imageRows.Close()
+		for imageRows.Next() {
+			var image entity.Image
+			if err := imageRows.Scan(
+				&image.ImageId,
+				&image.EstablishmentId,
+				&image.ImageUrl,
+				&image.CreatedAt,
+				&image.UpdatedAt,
+			); err != nil {
+				return nil, 0, err
+			}
+			restaurant.Images = append(restaurant.Images, &image)
+		}
+		if err := imageRows.Err(); err != nil {
+			return nil, 0, err
+		}
+
+		// Append the restaurant to the restaurants slice
+		restaurants = append(restaurants, &restaurant)
+	}
+
+	var overall uint64
+
+	queryC := `SELECT COUNT(*) FROM restaurant_table WHERE restaurant_name LIKE '%' || $1 || '%' and deleted_at IS NULL`
+
+	if err := p.db.QueryRow(ctx, queryC, name).Scan(&overall); err != nil {
+		return nil, 0, err
+	}
+
+	return restaurants, overall, nil
 }

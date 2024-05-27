@@ -12,4 +12,5 @@ type Hotel interface {
 	UpdateHotel(ctx context.Context, Hotel *entity.Hotel) (*entity.Hotel, error)
 	DeleteHotel(ctx context.Context, hotel_id string) error
 	ListHotelsByLocation(ctx context.Context, offset, limit uint64, country, city, state_province string) ([]*entity.Hotel, int64, error)
+	FindHotelsByName(ctx context.Context, name string) ([]*entity.Hotel, uint64, error)
 }
