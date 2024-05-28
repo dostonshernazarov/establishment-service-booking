@@ -296,7 +296,7 @@ func (p attractionRepo) ListAttractions(ctx context.Context, offset, limit int64
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM attraction_table`
+	queryC := `SELECT COUNT(*) FROM attraction_table WHERE deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC).Scan(&overall); err != nil {
 		return nil, 0, err
@@ -473,8 +473,12 @@ func (p attractionRepo) ListAttractionsByLocation(ctx context.Context, offset, l
 	ctx, span := otlp.Start(ctx, attractionServiceName, attractionSpanRepoPrefix+"ListL")
 	defer span.End()
 
-	queryL := `SELECT establishment_id FROM location_table WHERE country = $1 and city = $2 and state_province = $3 and category = 'attraction' LIMIT $4 OFFSET $5`
-	rows, err := p.db.Query(ctx, queryL, country, city, state_province, limit, offset)
+	countryStr := "%"+country+"%"
+	cityStr := "%"+city+"%"
+	stateStr := "%"+state_province+"%"
+
+	queryL := fmt.Sprintf("SELECT establishment_id FROM location_table WHERE country LIKE '%s' and city LIKE '%s' and state_province LIKE '%s' and category = 'attraction' and deleted_at IS NULL LIMIT $1 OFFSET $2",countryStr, cityStr, stateStr)
+	rows, err := p.db.Query(ctx, queryL, limit, offset)
 	if err != nil {
 		return nil, 0, err
 	}

@@ -31,6 +31,8 @@ type App struct {
 	AttractionUsecase usecase.Attraction
 	RestaurantUsecase usecase.Restaurant
 	FavouriteUsecase  usecase.Favourite
+	Review            usecase.Review
+	Image             usecase.Image
 	ServiceClients    grpc_service_clients.ServiceClients
 	BrokerProducer    event.BrokerProducer
 }
@@ -99,6 +101,7 @@ func (a *App) Run() error {
 	hotelRepo := repo.NewHotelRepo(a.DB)
 	favouriteRepo := repo.NewFavouriteRepo(a.DB)
 	reviewRepo := repo.NewReviewRepo(a.DB)
+	imageRepo := repo.NewImageRepo(a.DB)
 
 	// usecase initialization
 	attracationUsecase := usecase.NewAttractionService(contextTimeout, attractionRepo)
@@ -106,8 +109,9 @@ func (a *App) Run() error {
 	hotelUsecase := usecase.NewHotelService(contextTimeout, hotelRepo)
 	favouriteUsecase := usecase.NewFavouriteService(contextTimeout, favouriteRepo)
 	reviewUsecase := usecase.NewReviewService(contextTimeout, reviewRepo)
+	imageUsecase := usecase.NewImageService(contextTimeout, imageRepo)
 
-	pb.RegisterEstablishmentServiceServer(a.GrpcServer, invest_grpc.NewRPC(a.Logger, attracationUsecase, restaurantUsecase, hotelUsecase, favouriteUsecase, reviewUsecase, a.BrokerProducer))
+	pb.RegisterEstablishmentServiceServer(a.GrpcServer, invest_grpc.NewRPC(a.Logger, attracationUsecase, restaurantUsecase, hotelUsecase, favouriteUsecase,imageUsecase, reviewUsecase, a.BrokerProducer))
 	a.Logger.Info("gRPC Server Listening", zap.String("url", a.Config.RPCPort))
 	if err := grpc_server.Run(a.Config, a.GrpcServer); err != nil {
 		return fmt.Errorf("gRPC fatal to serve grpc server over %s %w", a.Config.RPCPort, err)
