@@ -593,7 +593,7 @@ func (p restaurantRepo) FindRestaurantsByName(ctx context.Context, name string) 
 
 	queryBuilder := p.RestaurantSelectQueryPrefix()
 
-	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(p.db.Sq.ILike("restaurant_name", name))
+	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("restaurant_name LIKE ?", "%"+name+"%"))
 
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
@@ -611,8 +611,8 @@ func (p restaurantRepo) FindRestaurantsByName(ctx context.Context, name string) 
 		var restaurant entity.Restaurant
 		if err := rows.Scan(
 			&restaurant.RestaurantId,
-			&restaurant.RestaurantName,
 			&restaurant.OwnerId,
+			&restaurant.RestaurantName,
 			&restaurant.Description,
 			&restaurant.Rating,
 			&restaurant.OpeningHours,

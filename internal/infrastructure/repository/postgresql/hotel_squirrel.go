@@ -592,7 +592,7 @@ func (p hotelRepo) FindHotelsByName(ctx context.Context, name string) ([]*entity
 
 	queryBuilder := p.HotelSelectQueryPrefix()
 
-	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(p.db.Sq.ILike("hotel_name", name))
+	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("hotel_name LIKE ?", "%"+name+"%"))
 
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
@@ -610,8 +610,8 @@ func (p hotelRepo) FindHotelsByName(ctx context.Context, name string) ([]*entity
 		var hotel entity.Hotel
 		if err := rows.Scan(
 			&hotel.HotelId,
-			&hotel.HotelName,
 			&hotel.OwnerId,
+			&hotel.HotelName,
 			&hotel.Description,
 			&hotel.Rating,
 			&hotel.ContactNumber,
