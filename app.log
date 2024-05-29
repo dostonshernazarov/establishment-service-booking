@@ -1,0 +1,116 @@
+2024-05-29T19:40:16.329+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:40:51.550+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:40:51+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListAttractions", "peer.address": "127.0.0.1:34058", "grpc.code": "OK", "grpc.time_ms": 37.612}
+2024-05-29T19:41:05.313+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:41:05+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListHotels", "peer.address": "127.0.0.1:34058", "grpc.code": "OK", "grpc.time_ms": 28.558}
+2024-05-29T19:41:17.030+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-29T19:41:17+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:34058", "error": "rpc error: code = Internal desc = failed to fetch hotels: ERROR: column \"attraction_id\" does not exist (SQLSTATE 42703)", "grpc.code": "Internal", "grpc.time_ms": 4.311}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_FindHotelsByName_Handler
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:4373
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-29T19:41:26.639+0500	INFO	app/main.go:36	User service stops !
+2024-05-29T19:42:50.808+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:42:53.143+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:42:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:42402", "grpc.code": "OK", "grpc.time_ms": 20.059}
+2024-05-29T19:43:06.501+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:43:06+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:42402", "grpc.code": "OK", "grpc.time_ms": 1.207}
+2024-05-29T19:43:12.994+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:43:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:42402", "grpc.code": "OK", "grpc.time_ms": 1.104}
+2024-05-29T19:43:31.413+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:43:31+05:00", "grpc.request.deadline": "2024-05-29T19:44:31+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "ListRestaurants", "peer.address": "127.0.0.1:42402", "grpc.code": "OK", "grpc.time_ms": 3.554}
+2024-05-29T19:43:50.457+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-29T19:43:50+05:00", "grpc.request.deadline": "2024-05-29T19:44:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:42402", "error": "rpc error: code = Internal desc = failed to fetch attractions: ERROR: column \"attraction_id\" does not exist (SQLSTATE 42703)", "grpc.code": "Internal", "grpc.time_ms": 0.461}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_FindRestaurantsByName_Handler
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:4247
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-29T19:43:53.360+0500	INFO	app/main.go:36	User service stops !
+2024-05-29T19:44:16.967+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:44:18.276+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-29T19:44:18+05:00", "grpc.request.deadline": "2024-05-29T19:45:18+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:56174", "error": "rpc error: code = Internal desc = failed to fetch attractions: ERROR: column \"reataurant_id\" does not exist (SQLSTATE 42703)", "grpc.code": "Internal", "grpc.time_ms": 0.615}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_FindRestaurantsByName_Handler
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:4247
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-29T19:44:23.052+0500	INFO	app/main.go:36	User service stops !
+2024-05-29T19:44:38.364+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:44:39.382+0500	ERROR	zap/options.go:212	finished unary call with code Internal	{"grpc.start_time": "2024-05-29T19:44:39+05:00", "grpc.request.deadline": "2024-05-29T19:45:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:47410", "error": "rpc error: code = Internal desc = failed to fetch attractions: number of field descriptions must equal number of destinations, got 10 and 11", "grpc.code": "Internal", "grpc.time_ms": 1.938}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+Booking/establishment-service-booking/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:16
+Booking/establishment-service-booking/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/internal/delivery/grpc/server/middleware.go:23
+Booking/establishment-service-booking/genproto/establishment-proto._EstablishmentService_FindRestaurantsByName_Handler
+	/home/doston/project/go/src/github/testBooking/establishment-service-booking/genproto/establishment-proto/establishment.pb.go:4247
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-05-29T19:44:50.964+0500	INFO	app/main.go:36	User service stops !
+2024-05-29T19:45:47.000+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:45:47.783+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:45:47+05:00", "grpc.request.deadline": "2024-05-29T19:46:47+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:33626", "grpc.code": "OK", "grpc.time_ms": 12.689}
+2024-05-29T19:45:56.681+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:45:56+05:00", "grpc.request.deadline": "2024-05-29T19:46:56+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:33626", "grpc.code": "OK", "grpc.time_ms": 1.367}
+2024-05-29T19:46:11.571+0500	INFO	app/main.go:36	User service stops !
+2024-05-29T19:46:35.795+0500	INFO	app/app.go:115	gRPC Server Listening	{"url": ":50024"}
+2024-05-29T19:46:37.171+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:46:37+05:00", "grpc.request.deadline": "2024-05-29T19:47:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:40910", "grpc.code": "OK", "grpc.time_ms": 11.136}
+2024-05-29T19:46:48.640+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:46:48+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:40910", "grpc.code": "OK", "grpc.time_ms": 1.565}
+2024-05-29T19:46:56.466+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:46:56+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindHotelsByName", "peer.address": "127.0.0.1:40910", "grpc.code": "OK", "grpc.time_ms": 1.233}
+2024-05-29T19:47:10.160+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-29T19:47:10+05:00", "grpc.request.deadline": "2024-05-29T19:48:10+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "establishment_service.EstablishmentService", "grpc.method": "FindRestaurantsByName", "peer.address": "127.0.0.1:40910", "grpc.code": "OK", "grpc.time_ms": 1.047}
+2024-05-29T19:47:29.704+0500	INFO	app/main.go:36	User service stops !

@@ -590,16 +590,23 @@ func (p hotelRepo) FindHotelsByName(ctx context.Context, name string) ([]*entity
 
 	var hotels []*entity.Hotel
 
-	queryBuilder := p.HotelSelectQueryPrefix()
+	query := `SELECT
+  hotel_id,
+  owner_id,
+  hotel_name,
+  description,
+  rating,
+  contact_number,
+  licence_url,
+  website_url,
+  created_at,
+  updated_at
+  FROM hotel_table
+  WHERE deleted_at IS NULL
+  AND hotel_name ILIKE '%' || $1 || '%'
+  ORDER BY rating DESC`
 
-	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("hotel_name LIKE ?", "%"+name+"%"))
-
-	query, args, err := queryBuilder.ToSql()
-	if err != nil {
-		return nil, 0, err
-	}
-
-	rows, err := p.db.Query(ctx, query, args...)
+	rows, err := p.db.Query(ctx, query, name)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -672,7 +679,7 @@ func (p hotelRepo) FindHotelsByName(ctx context.Context, name string) ([]*entity
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM hotel_table WHERE hotel_name LIKE '%' || $1 || '%' and deleted_at IS NULL`
+	queryC := `SELECT COUNT(*) FROM hotel_table WHERE hotel_name ILIKE '%' || $1 || '%' and deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC, name).Scan(&overall); err != nil {
 		return nil, 0, err

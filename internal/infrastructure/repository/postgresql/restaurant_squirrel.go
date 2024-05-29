@@ -591,16 +591,24 @@ func (p restaurantRepo) FindRestaurantsByName(ctx context.Context, name string) 
 
 	var restaurants []*entity.Restaurant
 
-	queryBuilder := p.RestaurantSelectQueryPrefix()
+	query := `SELECT
+  restaurant_id,
+  owner_id,
+  restaurant_name,
+  description,
+  rating,
+	opening_hours,
+  contact_number,
+  licence_url,
+  website_url,
+  created_at,
+  updated_at
+  FROM restaurant_table
+  WHERE deleted_at IS NULL
+  AND restaurant_name ILIKE '%' || $1 || '%'
+  ORDER BY rating DESC`
 
-	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("restaurant_name LIKE ?", "%"+name+"%"))
-
-	query, args, err := queryBuilder.ToSql()
-	if err != nil {
-		return nil, 0, err
-	}
-
-	rows, err := p.db.Query(ctx, query, args...)
+	rows, err := p.db.Query(ctx, query, name)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -674,7 +682,7 @@ func (p restaurantRepo) FindRestaurantsByName(ctx context.Context, name string) 
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM restaurant_table WHERE restaurant_name LIKE '%' || $1 || '%' and deleted_at IS NULL`
+	queryC := `SELECT COUNT(*) FROM restaurant_table WHERE restaurant_name ILIKE '%' || $1 || '%' and deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC, name).Scan(&overall); err != nil {
 		return nil, 0, err

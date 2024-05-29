@@ -584,16 +584,23 @@ func (p attractionRepo) FindAttractionsByName(ctx context.Context, name string) 
 
 	var attractions []*entity.Attraction
 
-	queryBuilder := p.AttractionSelectQueryPrefix()
+	query := `SELECT
+  attraction_id,
+  attraction_name,
+  owner_id,
+  description,
+  rating,
+  contact_number,
+  licence_url,
+  website_url,
+  created_at,
+  updated_at
+  FROM attraction_table
+  WHERE deleted_at IS NULL
+  AND attraction_name ILIKE '%' || $1 || '%'
+  ORDER BY rating DESC`
 
-	queryBuilder = queryBuilder.Where(p.db.Sq.Equal("deleted_at", nil)).OrderBy("rating DESC").Where(squirrel.Expr("attraction_name LIKE ?", "%"+name+"%"))
-
-	query, args, err := queryBuilder.ToSql()
-	if err != nil {
-		return nil, 0, err
-	}
-
-	rows, err := p.db.Query(ctx, query, args...)
+	rows, err := p.db.Query(ctx, query, name)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -666,7 +673,7 @@ func (p attractionRepo) FindAttractionsByName(ctx context.Context, name string) 
 
 	var overall uint64
 
-	queryC := `SELECT COUNT(*) FROM attraction_table WHERE attraction_name LIKE '%' || $1 || '%' and deleted_at IS NULL`
+	queryC := `SELECT COUNT(*) FROM attraction_table WHERE attraction_name ILIKE '%' || $1 || '%' and deleted_at IS NULL`
 
 	if err := p.db.QueryRow(ctx, queryC, name).Scan(&overall); err != nil {
 		return nil, 0, err
